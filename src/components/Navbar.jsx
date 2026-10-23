@@ -7,7 +7,7 @@ export const NAV_LINKS = [
   { id: 'syllabus', key: 'nav.syllabus' },
   { id: 'journey', key: 'nav.how' },
   { id: 'stories', key: 'nav.stories' },
-  { id: 'faq', key: 'nav.faq' },
+  { id: 'compare', key: 'nav.compare' },
 ];
 
 export function Wordmark({ className = '' }) {
