@@ -38,7 +38,7 @@ export const comparison = [
     why: 'Study in your medium without losing exam terminology.',
   },
   {
-    question: 'Who answers my doubt at 11 pm?',
+    question: 'Who answers my doubt at 11\u00a0pm?',
     others: 'Doubt sessions run at fixed hours; generic chatbots reply anytime but are not built around the UPSC syllabus.',
     ours: 'The Doubt Solver answers anytime and points you to the related syllabus topic and PYQs.',
     why: 'A doubt gets cleared while the topic is still fresh.',

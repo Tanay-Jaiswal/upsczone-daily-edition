@@ -4,44 +4,79 @@ import { comparison, alternativesNote } from '../data/compare.js';
 import { Wordmark } from './Navbar.jsx';
 import FAQ from './FAQ.jsx';
 
+// The UPSC ZONE AI column is drawn as one raised "clipping": ink border plus the
+// same hard offset shadow as the sample quiz card, stitched across table cells.
+const CLIP_SIDES = 'border-x-2 border-ink bg-white shadow-[6px_0_0_0_#1C1B19]';
+
+function Answer({ ours, why, whyLabel }) {
+  return (
+    <div className="grid grid-cols-[1.25rem_1fr] gap-x-3 gap-y-2">
+      <span className="mt-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-success text-white">
+        <Check className="h-3 w-3" strokeWidth={3} aria-hidden="true" />
+      </span>
+      <p className="text-[0.95rem] font-medium leading-relaxed text-ink">{ours}</p>
+      <p className="col-start-2 font-serif text-[0.95rem] italic leading-relaxed text-ink">
+        <span className="sr-only">{whyLabel}: </span>
+        <span className="marker-static">{why}</span>
+      </p>
+    </div>
+  );
+}
+
+function Usual({ text }) {
+  return (
+    <div className="grid grid-cols-[1.25rem_1fr] gap-x-3">
+      <span className="mt-0.5 flex h-5 w-5 items-center justify-center rounded-full border border-ink-muted/40 text-ink-muted">
+        <Minus className="h-3 w-3" strokeWidth={3} aria-hidden="true" />
+      </span>
+      <p className="text-[0.95rem] leading-relaxed text-ink-muted">{text}</p>
+    </div>
+  );
+}
+
 export default function Compare() {
   const { t, openSoon } = useUI();
   const last = comparison.length - 1;
 
   return (
     <section id="compare" aria-labelledby="compare-title" className="edition py-20 lg:py-28">
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-        <div className="max-w-2xl">
-          <p className="kicker">{t('compare.kicker')}</p>
-          <h2 id="compare-title" className="section-title mt-3">
-            {t('compare.title')}
-          </h2>
-          <p className="mt-4 text-lg leading-relaxed text-ink-muted">{t('compare.sub')}</p>
-        </div>
-        <span className="label-sample self-start sm:self-auto">Illustrative comparison</span>
+      <div className="max-w-2xl">
+        <p className="kicker">{t('compare.kicker')}</p>
+        <h2 id="compare-title" className="section-title mt-3">
+          {t('compare.title')}
+        </h2>
+        <p className="mt-4 text-lg leading-relaxed text-ink-muted">{t('compare.sub')}</p>
+        <span className="label-sample mt-5">Illustrative comparison</span>
       </div>
 
-      {/* Desktop and tablet: a broadsheet-style table with the UPSC ZONE AI column raised */}
-      <div className="mt-12 hidden md:block">
+      {/* Tablet and desktop: three aligned columns, answers in a raised clipping */}
+      <div className="mt-14 hidden pr-[6px] md:block">
         <table className="w-full table-fixed border-separate border-spacing-0 text-left">
           <caption className="sr-only">
-            How UPSC ZONE AI compares with typical alternatives on common aspirant questions. Illustrative.
+            Illustrative comparison of UPSC ZONE AI with typical alternatives, by common aspirant questions.
           </caption>
           <colgroup>
-            <col className="w-[26%]" />
-            <col className="w-[32%]" />
+            <col className="w-[27%]" />
+            <col className="w-[31%]" />
             <col className="w-[42%]" />
           </colgroup>
           <thead>
             <tr>
-              <th scope="col" className="double-rule pb-4 pr-6 pt-5 align-bottom">
-                <span className="kicker">{t('compare.colQuestion')}</span>
+              <th scope="col" className="double-rule pb-5 pr-8 pt-6 align-bottom font-serif text-base font-normal italic text-ink-muted">
+                {t('compare.colQuestion')}
               </th>
-              <th scope="col" className="double-rule pb-4 pr-6 pt-5 align-bottom">
-                <span className="kicker">{t('compare.colOthers')}</span>
+              <th scope="col" className="double-rule pb-5 pr-8 pt-6 align-bottom font-serif text-base font-normal italic text-ink-muted">
+                {t('compare.colOthers')}
               </th>
-              <th scope="col" className="rounded-t-2xl bg-inkblue px-6 pb-4 pt-5 align-bottom text-white">
-                <Wordmark className="text-xl [&>span:last-child]:text-ink" />
+              <th
+                scope="col"
+                className="rounded-t-2xl border-x-2 border-t-2 border-ink bg-highlighter px-7 pb-5 pt-6 align-bottom shadow-[6px_0_0_0_#1C1B19]"
+              >
+                <span className="sr-only">UPSC ZONE AI</span>
+                <span aria-hidden="true" className="flex items-end justify-between gap-4">
+                  <Wordmark className="text-2xl [&>span:last-child]:bg-ink [&>span:last-child]:text-highlighter" />
+                  <span className="hidden font-serif text-sm font-normal italic text-ink lg:inline">and why it matters</span>
+                </span>
               </th>
             </tr>
           </thead>
@@ -50,70 +85,68 @@ export default function Compare() {
               <tr key={row.question} className="group">
                 <th
                   scope="row"
-                  className="border-b border-rule py-6 pr-6 align-top font-serif text-lg font-semibold leading-snug"
+                  className="border-t border-rule py-7 pr-8 align-top font-serif text-xl font-semibold leading-snug text-ink"
                 >
                   {row.question}
                 </th>
-                <td className="border-b border-rule py-6 pr-6 align-top text-sm leading-relaxed text-ink-muted">
-                  <span className="flex gap-2.5">
-                    <Minus className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
-                    {row.others}
-                  </span>
+                <td className="border-t border-rule py-7 pr-8 align-top">
+                  <Usual text={row.others} />
                 </td>
                 <td
-                  className={`border-x-2 border-inkblue bg-white px-6 py-6 align-top transition-colors group-hover:bg-highlighter/20 ${
-                    i === last ? 'rounded-b-2xl border-b-2' : 'border-b border-b-rule'
-                  }`}
+                  className={`${CLIP_SIDES} px-7 py-7 align-top transition-colors group-hover:bg-paper ${
+                    i === 0 ? 'border-t-2 border-t-ink' : 'border-t border-t-rule'
+                  } ${i === last ? 'rounded-b-2xl border-b-2 shadow-[6px_0_0_0_#1C1B19,6px_6px_0_0_#1C1B19]' : ''}`}
                 >
-                  <span className="flex gap-2.5 text-sm font-medium leading-relaxed text-ink">
-                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-success" aria-hidden="true" />
-                    {row.ours}
-                  </span>
-                  <span className="mt-2 block pl-6 text-xs text-ink-muted">
-                    <span className="bg-highlighter px-1 font-semibold text-ink">{t('compare.why')}:</span> {row.why}
-                  </span>
+                  <Answer ours={row.ours} why={row.why} whyLabel={t('compare.why')} />
                 </td>
               </tr>
             ))}
+            <tr>
+              <td colSpan={2} className="border-t border-rule pr-8 pt-8 align-top text-sm leading-relaxed text-ink-muted">
+                {alternativesNote} Good teachers and mentors still matter; the edition is built to work alongside them.
+              </td>
+              <td className="pt-8 align-top">
+                <button
+                  type="button"
+                  onClick={() => openSoon("Today's edition")}
+                  className="btn-primary w-full py-3.5 text-base"
+                >
+                  {t('hero.cta')}
+                  <ArrowRight className="h-5 w-5" aria-hidden="true" />
+                </button>
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
 
-      {/* Mobile: one card per question */}
-      <ol className="mt-10 space-y-4 md:hidden">
-        {comparison.map((row, i) => (
-          <li key={row.question} className="overflow-hidden rounded-xl border border-rule bg-white">
-            <p className="flex gap-3 px-4 pt-4 font-serif text-lg font-semibold leading-snug">
-              <span className="font-sans text-xs font-semibold text-ink-muted">{String(i + 1).padStart(2, '0')}</span>
-              {row.question}
-            </p>
-            <div className="mt-3 px-4 pb-4">
-              <p className="kicker">{t('compare.colOthers')}</p>
-              <p className="mt-1 flex gap-2 text-sm leading-relaxed text-ink-muted">
-                <Minus className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
-                {row.others}
-              </p>
+      {/* Mobile: one card per question, same visual language */}
+      <ul className="mt-10 space-y-6 md:hidden">
+        {comparison.map((row) => (
+          <li key={row.question} className="double-rule pt-5">
+            <h3 className="font-serif text-xl font-semibold leading-snug">{row.question}</h3>
+            <p className="mt-4 font-serif text-sm italic text-ink-muted">{t('compare.colOthers')}</p>
+            <div className="mt-2">
+              <Usual text={row.others} />
             </div>
-            <div className="border-t-2 border-inkblue bg-inkblue/[0.04] px-4 py-4">
-              <p className="kicker !text-inkblue">UPSC ZONE AI</p>
-              <p className="mt-1 flex gap-2 text-sm font-medium leading-relaxed">
-                <Check className="mt-0.5 h-4 w-4 shrink-0 text-success" aria-hidden="true" />
-                {row.ours}
-              </p>
-              <p className="mt-2 pl-6 text-xs text-ink-muted">
-                <span className="bg-highlighter px-1 font-semibold text-ink">{t('compare.why')}:</span> {row.why}
-              </p>
+            <div className="mr-[6px] mt-5 overflow-hidden rounded-xl border-2 border-ink bg-white shadow-[6px_6px_0_0_#1C1B19]">
+              <div className="bg-highlighter px-4 py-2.5">
+                <Wordmark className="text-lg [&>span:last-child]:bg-ink [&>span:last-child]:text-highlighter" />
+              </div>
+              <div className="p-4">
+                <Answer ours={row.ours} why={row.why} whyLabel={t('compare.why')} />
+              </div>
             </div>
           </li>
         ))}
-      </ol>
-
-      <div className="mt-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-        <p className="max-w-2xl text-xs leading-relaxed text-ink-muted">
+      </ul>
+      <div className="mt-8 space-y-5 md:hidden">
+        <p className="text-sm leading-relaxed text-ink-muted">
           {alternativesNote} Good teachers and mentors still matter; the edition is built to work alongside them.
         </p>
-        <button type="button" onClick={() => openSoon("Today's edition")} className="btn-primary shrink-0 self-start">
-          {t('hero.cta')} <ArrowRight className="h-4 w-4" aria-hidden="true" />
+        <button type="button" onClick={() => openSoon("Today's edition")} className="btn-primary w-full py-3.5 text-base">
+          {t('hero.cta')}
+          <ArrowRight className="h-5 w-5" aria-hidden="true" />
         </button>
       </div>
 
