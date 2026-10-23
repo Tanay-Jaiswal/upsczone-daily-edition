@@ -8,7 +8,7 @@ import SampleQuiz from './components/SampleQuiz.jsx';
 import Features from './components/Features.jsx';
 import SyllabusMap from './components/SyllabusMap.jsx';
 import Journey from './components/Journey.jsx';
-import Testimonials from './components/Testimonials.jsx';
+import Stories from './components/Stories.jsx';
 import Compare from './components/Compare.jsx';
 import CTABand from './components/CTABand.jsx';
 import Footer from './components/Footer.jsx';
@@ -54,7 +54,7 @@ export default function App() {
         <Features />
         <SyllabusMap />
         <Journey />
-        <Testimonials />
+        <Stories />
         <Compare />
         <CTABand />
       </main>

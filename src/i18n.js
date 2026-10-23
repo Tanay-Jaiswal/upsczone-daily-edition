@@ -40,7 +40,8 @@ export const strings = {
     'journey.title': 'One companion for the whole journey',
 
     'stories.kicker': 'Stories',
-    'stories.title': 'Letters from aspirants',
+    'stories.title': 'India Is Preparing. One Aspirant at a Time.',
+    'stories.sub': 'Every journey is different. Every goal deserves a plan.',
 
     'compare.kicker': 'Compare before you choose',
     'compare.title': 'Why choose the Daily Edition',
@@ -92,7 +93,8 @@ export const strings = {
     'journey.title': 'पूरी यात्रा के लिए एक साथी',
 
     'stories.kicker': 'अनुभव',
-    'stories.title': 'अभ्यर्थियों के पत्र',
+    'stories.title': 'भारत तैयारी कर रहा है। एक-एक अभ्यर्थी के साथ।',
+    'stories.sub': 'हर सफ़र अलग है। हर लक्ष्य को एक योजना चाहिए।',
 
     'compare.kicker': 'चुनने से पहले तुलना करें',
     'compare.title': 'डेली एडिशन ही क्यों',

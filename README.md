@@ -31,7 +31,9 @@ news to your syllabus", the page shows it happening.
    (+ AI Answer Evaluation, AI Doubt Solver, Hindi + English)
 5. Interactive Syllabus Map (ARIA tabs: Prelims, GS I–IV, Essay)
 6. How it works: Prelims → Mains → Interview journey
-7. "Letters from aspirants" (placeholder testimonials) and an illustrative stat strip
+7. Stories: "India Is Preparing. One Aspirant at a Time." An India map that draws itself on scroll,
+   with placeholder story markers (hover, focus, click or tap), a featured story card, a swipeable
+   story strip with gentle auto-advance on desktop, and an empty, layout-only video slot
 8. Comparison table ("Why choose the Daily Edition") with three quick FAQ answers below it
 9. Final CTA band
 10. Footer
@@ -78,15 +80,17 @@ Everything below is **sample or placeholder content** created for this design su
 | Sample quiz (`src/data/quiz.js`) | Original questions written for the concept. The quiz logic works; answers were checked against standard references. |
 | Syllabus Map (`src/data/syllabus.js`) | Illustrative data. Headlines, notes and PYQ year counts are placeholders, not an analysis of real papers. Labelled "Illustrative data" in the UI. |
 | Feature micro-previews (scores, years, notes) | Illustrative visuals only. |
-| Testimonials (`src/data/testimonials.js`) | Placeholder letters. Not real people or quotes; no names, photos, ranks or marks. Labelled in the UI. |
-| Stat strip | Illustrative values, labelled in the UI. Not measured metrics. |
+| Stories (`src/data/stories.js`) | Placeholder stories. Not real people or quotes: personas and cities only, with no names, photos, ranks, marks, exam years, ratings or outcomes. Labelled "Sample testimonials (placeholder)" in the UI. |
+| Story map markers | Illustrative locations, not user data. Labelled in the UI. |
+| Video story slot | Layout only. No video exists; the slot says so. |
+| India map (`src/data/indiaMap.js`) | Real geography: [DataMeet India states](https://github.com/datameet/maps) (CC BY 4.0), outer boundary as per the official Survey of India depiction, simplified. The state layer predates 2019, so the J&K / Ladakh UT line is not drawn. See `scripts/map/README.md`. |
 | Comparison table (`src/data/compare.js`) | Illustrative, original copy, labelled in the UI. "Typical alternatives" means broad categories (classroom coaching, test series, generic AI chatbots, self-study); no institution is named or assessed, and no rankings or statistics are claimed. |
 | FAQ (`src/data/faq.js`) | Describes intended product behaviour; makes no promise of results. |
 | All CTAs (Start free, Log in, mock tests, drills, footer links, social icons) | **Non-functional.** Each opens a "Coming soon in the full product" dialog. No account is created and nothing is saved. |
 | Social icons | Generic lucide icons, no brand logos. |
 | Bilingual toggle | Real: switches navbar, hero, CTAs and section headings between English and Hindi (`src/i18n.js`). Body copy stays in English in this concept. |
 
-All copy, layout and illustrations are original. No templates, stock photos, partner logos or
+All copy, layout and illustrations are original (map boundaries: DataMeet, CC BY 4.0). No templates, stock photos, partner logos or
 political content are used.
 
 ---
