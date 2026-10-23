@@ -107,7 +107,7 @@ export default function Features() {
   const { t, openSoon } = useUI();
   return (
     <section id="features" aria-labelledby="features-title" className="edition py-20 lg:py-28">
-      <div className="max-w-2xl">
+      <div data-reveal className="reveal max-w-2xl">
         <p className="kicker">{t('features.kicker')}</p>
         <h2 id="features-title" className="section-title mt-3">
           {t('features.title')}
@@ -118,7 +118,8 @@ export default function Features() {
         {MAIN.map(({ letter, icon: Icon, title, body, preview: Preview }, i) => (
           <article
             key={title}
-            className={`flex flex-col border-b border-rule py-8 lg:border-b-0 ${COLUMN_RULES[i]}`}
+            data-reveal
+            className={`reveal flex flex-col border-b border-rule py-8 lg:border-b-0 ${COLUMN_RULES[i]}`}
           >
             <p className="kicker">Section {letter}</p>
             <div className="mt-4 flex items-center gap-3">
@@ -142,15 +143,17 @@ export default function Features() {
         ))}
       </div>
 
-      <div className="mt-10 border-t border-ink pt-8">
+      <div data-reveal className="reveal mt-10 border-t border-ink pt-8">
         <h3 className="kicker">{t('features.more')}</h3>
         <ul className="mt-5 grid gap-4 md:grid-cols-3">
           {MORE.map(({ icon: Icon, title, body }) => (
-            <li key={title} className="card-lift flex gap-4 rounded-xl border border-rule bg-white/60 p-5">
+            <li key={title} className="reveal-child">
+              <div className="card-lift flex h-full gap-4 rounded-xl border border-rule bg-white/60 p-5">
               <Icon className="mt-0.5 h-6 w-6 shrink-0 text-inkblue" aria-hidden="true" />
               <div>
                 <p className="font-semibold">{title}</p>
                 <p className="mt-1 text-sm leading-relaxed text-ink-muted">{body}</p>
+              </div>
               </div>
             </li>
           ))}
