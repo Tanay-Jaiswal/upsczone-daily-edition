@@ -105,6 +105,10 @@
   }
 }
 
+.map-pulse {
+  opacity: 0;
+}
+
 /* Static highlighter stroke, used for the "why it matters" lines in Compare */
 .marker-static {
   background-image: linear-gradient(transparent 55%, rgba(246, 214, 90, 0.85) 55%, rgba(246, 214, 90, 0.85) 92%, transparent 92%);
@@ -217,6 +221,46 @@
     transform: none;
   }
 
+  /* Stories: the map outline draws, states and markers follow, then the
+     featured story. Each step keys off the same data-in flag. */
+  [data-motion] [data-reveal] .map-outline {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    transition: stroke-dashoffset 1800ms var(--ease-swing) 100ms;
+  }
+  [data-motion] [data-reveal] .map-fill,
+  [data-motion] [data-reveal] .map-borders {
+    opacity: 0;
+    transition: opacity 800ms ease 900ms;
+  }
+  [data-motion] [data-reveal] .map-pin {
+    opacity: 0;
+    transform: translateY(6px) scale(0.3);
+    transition: transform 500ms cubic-bezier(0.34, 1.56, 0.64, 1), opacity 250ms ease;
+    transition-delay: calc(var(--i, 0) * 110ms + 1300ms);
+  }
+  [data-motion] [data-in] .map-outline {
+    stroke-dashoffset: 0;
+  }
+  [data-motion] [data-in] .map-fill,
+  [data-motion] [data-in] .map-borders,
+  [data-motion] [data-in] .map-pin {
+    opacity: 1;
+    transform: none;
+  }
+  [data-motion] [data-in] .map-pulse {
+    animation: map-pulse 2600ms ease-out infinite;
+    animation-delay: calc(var(--i, 0) * 350ms + 2600ms);
+  }
+  [data-motion] [data-reveal] .story-late {
+    transition-delay: calc(var(--delay, 0ms) + 1500ms);
+  }
+  @media (max-width: 1023px) {
+    [data-motion] [data-reveal] .story-late {
+      transition-delay: calc(var(--delay, 0ms) + 400ms);
+    }
+  }
+
   /* Content swap feedback (syllabus topic change) */
   .swap-in {
     animation: swap-in 420ms var(--ease-out) both;
@@ -251,5 +295,15 @@
   from {
     opacity: 0;
     transform: translateY(8px);
+  }
+}
+@keyframes map-pulse {
+  from {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(2.2);
   }
 }
