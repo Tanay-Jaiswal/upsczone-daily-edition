@@ -111,3 +111,61 @@
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
 }
+
+/* Compare section scroll choreography. Hidden starting states apply only when
+   the section opts in (data-animate) and the visitor allows motion; otherwise
+   everything renders in its final state. */
+.cmp-clip {
+  box-shadow: 6px 0 0 0 #1c1b19;
+}
+.cmp-clip-last {
+  box-shadow: 6px 0 0 0 #1c1b19, 6px 6px 0 0 #1c1b19;
+}
+.cmp-head {
+  background: linear-gradient(#f6d65a, #f6d65a) no-repeat left / 100% 100%, #ffffff;
+}
+@media (prefers-reduced-motion: no-preference) {
+  [data-animate] .cmp-reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 600ms ease, transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1);
+    transition-delay: var(--delay, 0ms);
+  }
+  [data-animate] .is-in .cmp-reveal,
+  [data-animate] .cmp-reveal.is-in {
+    opacity: 1;
+    transform: none;
+  }
+  /* The answer column "lifts" onto the page row by row */
+  [data-animate] .cmp-clip,
+  [data-animate] .cmp-clip-last {
+    box-shadow: 0 0 0 0 #1c1b19;
+    transition: box-shadow 500ms ease, background-color 200ms ease;
+    transition-delay: calc(var(--delay, 0ms) + 150ms), 0ms;
+  }
+  [data-animate] .is-in .cmp-clip {
+    box-shadow: 6px 0 0 0 #1c1b19;
+  }
+  [data-animate] .is-in .cmp-clip-last {
+    box-shadow: 6px 0 0 0 #1c1b19, 6px 6px 0 0 #1c1b19;
+  }
+  /* Highlighter sweep across the column header */
+  [data-animate] .cmp-head {
+    background-size: 0% 100%, auto;
+    transition: background-size 900ms cubic-bezier(0.65, 0, 0.35, 1) 200ms;
+  }
+  [data-animate] .is-in .cmp-head {
+    background-size: 100% 100%, auto;
+  }
+  /* Check badges pop in after their row */
+  [data-animate] .cmp-icon {
+    transform: scale(0.4);
+    opacity: 0;
+    transition: transform 450ms cubic-bezier(0.34, 1.56, 0.64, 1), opacity 300ms ease;
+    transition-delay: calc(var(--delay, 0ms) + 300ms);
+  }
+  [data-animate] .is-in .cmp-icon {
+    transform: none;
+    opacity: 1;
+  }
+}
