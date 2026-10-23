@@ -1,0 +1,231 @@
+// ILLUSTRATIVE SAMPLE DATA for the Syllabus Map design preview.
+// Headlines are neutral explainers written for this concept, notes are short
+// study lines, and PYQ counts are placeholder numbers, not a real analysis of
+// previous-year papers.
+
+export const papers = [
+  {
+    id: 'prelims',
+    label: 'Prelims',
+    full: 'Prelims · General Studies Paper I',
+    topics: [
+      {
+        id: 'p-climate',
+        name: 'Indian monsoon',
+        news: 'Explainer: Why the monsoon trough shifts north through the summer',
+        note: 'Differential heating + ITCZ shift + Tibetan plateau = seasonal reversal of winds.',
+        pyqs: [{ year: 2017, count: 1 }, { year: 2020, count: 2 }, { year: 2023, count: 1 }],
+      },
+      {
+        id: 'p-env',
+        name: 'Protected areas',
+        news: 'Explainer: Biosphere reserve vs national park, what is the difference?',
+        note: 'Biosphere reserves have core, buffer and transition zones; human use is allowed outside the core.',
+        pyqs: [{ year: 2016, count: 2 }, { year: 2019, count: 1 }, { year: 2022, count: 2 }],
+      },
+      {
+        id: 'p-polity',
+        name: 'Fundamental Rights',
+        news: 'Explainer: What a writ of habeas corpus actually asks a court to do',
+        note: 'Five writs: habeas corpus, mandamus, prohibition, certiorari, quo warranto (Art. 32, 226).',
+        pyqs: [{ year: 2015, count: 1 }, { year: 2018, count: 2 }, { year: 2021, count: 1 }],
+      },
+      {
+        id: 'p-scitech',
+        name: 'Space technology',
+        news: 'Explainer: Geostationary vs sun-synchronous orbits in plain words',
+        note: 'GEO ≈ 35,786 km, fixed over one point; SSO passes a place at the same local time daily.',
+        pyqs: [{ year: 2016, count: 1 }, { year: 2019, count: 1 }, { year: 2023, count: 2 }],
+      },
+      {
+        id: 'p-economy',
+        name: 'Money & banking',
+        news: 'Explainer: What a change in the repo rate means for loan EMIs',
+        note: 'Repo rate up → costlier borrowing for banks → higher lending rates → demand cools.',
+        pyqs: [{ year: 2015, count: 2 }, { year: 2020, count: 1 }, { year: 2022, count: 1 }],
+      },
+    ],
+  },
+  {
+    id: 'gs1',
+    label: 'GS I',
+    full: 'Mains · GS Paper I · Heritage, Society, Geography',
+    topics: [
+      {
+        id: 'g1-cyclone',
+        name: 'Tropical cyclones',
+        news: 'Explainer: Why the Bay of Bengal sees more cyclones than the Arabian Sea',
+        note: 'Warmer sea surface, weaker vertical wind shear and remnant systems from the Pacific.',
+        pyqs: [{ year: 2017, count: 1 }, { year: 2020, count: 1 }, { year: 2022, count: 1 }],
+      },
+      {
+        id: 'g1-urban',
+        name: 'Urbanisation',
+        news: 'Explainer: What makes a settlement "urban" in the Census',
+        note: 'Statutory towns vs census towns: population, density and non-farm workforce criteria.',
+        pyqs: [{ year: 2015, count: 1 }, { year: 2019, count: 1 }, { year: 2023, count: 1 }],
+      },
+      {
+        id: 'g1-ocean',
+        name: 'Ocean currents',
+        news: 'Explainer: How ocean currents shape coastal climates far away',
+        note: 'Warm currents raise coastal temperatures and humidity; cold currents favour coastal deserts.',
+        pyqs: [{ year: 2015, count: 1 }, { year: 2018, count: 1 }, { year: 2021, count: 1 }],
+      },
+      {
+        id: 'g1-art',
+        name: 'Indian art forms',
+        news: 'Explainer: How a classical dance form gets its recognised status',
+        note: 'Link each form to its region, key features and a well-known textual source.',
+        pyqs: [{ year: 2016, count: 1 }, { year: 2020, count: 1 }, { year: 2024, count: 1 }],
+      },
+    ],
+  },
+  {
+    id: 'gs2',
+    label: 'GS II',
+    full: 'Mains · GS Paper II · Polity, Governance, IR',
+    topics: [
+      {
+        id: 'g2-fiscal',
+        name: 'Fiscal federalism',
+        news: 'Explainer: How a Finance Commission shares taxes with states',
+        note: 'Article 280: constituted every five years; recommends vertical and horizontal devolution.',
+        pyqs: [{ year: 2016, count: 1 }, { year: 2020, count: 1 }, { year: 2023, count: 1 }],
+      },
+      {
+        id: 'g2-local',
+        name: 'Local governance',
+        news: 'Explainer: What a Gram Sabha can and cannot decide',
+        note: '73rd Amendment: three-tier panchayats, State Election Commissions, State Finance Commissions.',
+        pyqs: [{ year: 2015, count: 1 }, { year: 2018, count: 1 }, { year: 2022, count: 1 }],
+      },
+      {
+        id: 'g2-bodies',
+        name: 'Constitutional bodies',
+        news: 'Explainer: Constitutional vs statutory bodies, with simple examples',
+        note: 'Constitutional bodies are created by the Constitution; statutory bodies by an Act of Parliament.',
+        pyqs: [{ year: 2017, count: 1 }, { year: 2019, count: 1 }, { year: 2024, count: 1 }],
+      },
+      {
+        id: 'g2-egov',
+        name: 'E-governance',
+        news: 'Explainer: How digital public services reduce paperwork for citizens',
+        note: 'Frame answers around transparency, accountability, last-mile access and data privacy.',
+        pyqs: [{ year: 2016, count: 1 }, { year: 2021, count: 1 }, { year: 2023, count: 1 }],
+      },
+    ],
+  },
+  {
+    id: 'gs3',
+    label: 'GS III',
+    full: 'Mains · GS Paper III · Economy, Environment, S&T, Security',
+    topics: [
+      {
+        id: 'g3-wetlands',
+        name: 'Conservation',
+        news: 'Explainer: How wetlands quietly work as carbon sinks',
+        note: 'Ramsar Convention (1971); waterlogged soils slow decomposition and store carbon.',
+        pyqs: [{ year: 2015, count: 1 }, { year: 2019, count: 1 }, { year: 2023, count: 1 }],
+      },
+      {
+        id: 'g3-inflation',
+        name: 'Inflation & monetary policy',
+        news: 'Explainer: Why a central bank targets an inflation band, not a number',
+        note: 'Flexible inflation targeting: a target with a tolerance band set by law.',
+        pyqs: [{ year: 2017, count: 1 }, { year: 2020, count: 1 }, { year: 2024, count: 1 }],
+      },
+      {
+        id: 'g3-disaster',
+        name: 'Disaster management',
+        news: 'Explainer: What a city heat action plan usually contains',
+        note: 'Early warning, cool shelters, work-hour shifts, and public awareness: prevention over response.',
+        pyqs: [{ year: 2016, count: 1 }, { year: 2021, count: 1 }, { year: 2022, count: 1 }],
+      },
+      {
+        id: 'g3-cyber',
+        name: 'Cyber security',
+        news: 'Explainer: Why phishing still works, and how two-factor login helps',
+        note: 'Structure: threat → vulnerability → institutional response → citizen awareness.',
+        pyqs: [{ year: 2015, count: 1 }, { year: 2019, count: 1 }, { year: 2023, count: 1 }],
+      },
+      {
+        id: 'g3-agri',
+        name: 'Food processing',
+        news: 'Explainer: How cold chains cut post-harvest loss for farmers',
+        note: 'Link storage, logistics and processing to farm income and food security.',
+        pyqs: [{ year: 2017, count: 1 }, { year: 2020, count: 1 }, { year: 2022, count: 1 }],
+      },
+    ],
+  },
+  {
+    id: 'gs4',
+    label: 'GS IV',
+    full: 'Mains · GS Paper IV · Ethics, Integrity, Aptitude',
+    topics: [
+      {
+        id: 'g4-integrity',
+        name: 'Integrity',
+        news: 'Sample case: An officer finds an error that benefits her own department',
+        note: 'Integrity = consistency of values and action, especially when no one is watching.',
+        pyqs: [{ year: 2016, count: 1 }, { year: 2019, count: 1 }, { year: 2023, count: 1 }],
+      },
+      {
+        id: 'g4-ei',
+        name: 'Emotional intelligence',
+        news: 'Explainer: Why emotional intelligence matters at a public help desk',
+        note: 'Self-awareness, self-regulation, empathy and social skill (Goleman’s components).',
+        pyqs: [{ year: 2015, count: 1 }, { year: 2018, count: 1 }, { year: 2022, count: 1 }],
+      },
+      {
+        id: 'g4-probity',
+        name: 'Probity in governance',
+        news: 'Explainer: What a citizen’s charter promises, and why timelines matter',
+        note: 'Tools of probity: codes of conduct, citizen’s charters, RTI and social audit.',
+        pyqs: [{ year: 2017, count: 1 }, { year: 2020, count: 1 }, { year: 2024, count: 1 }],
+      },
+      {
+        id: 'g4-case',
+        name: 'Case studies',
+        news: 'Sample case: Balancing a deadline against a safety inspection',
+        note: 'Stakeholders → options → pros/cons → chosen course with values that justify it.',
+        pyqs: [{ year: 2018, count: 2 }, { year: 2021, count: 2 }, { year: 2023, count: 2 }],
+      },
+    ],
+  },
+  {
+    id: 'essay',
+    label: 'Essay',
+    full: 'Mains · Essay Paper',
+    topics: [
+      {
+        id: 'e-tech',
+        name: 'Technology & society',
+        news: 'Explainer: What changes when every village gets a digital library',
+        note: 'Open with a concrete scene, widen to principle, end with a balanced way forward.',
+        pyqs: [{ year: 2016, count: 1 }, { year: 2020, count: 1 }, { year: 2023, count: 1 }],
+      },
+      {
+        id: 'e-env',
+        name: 'Environment & development',
+        news: 'Explainer: Why river-cleaning projects need upstream thinking',
+        note: 'Use the “trade-off to synergy” arc: growth and ecology as partners, not rivals.',
+        pyqs: [{ year: 2017, count: 1 }, { year: 2021, count: 1 }, { year: 2024, count: 1 }],
+      },
+      {
+        id: 'e-edu',
+        name: 'Education',
+        news: 'Explainer: What foundational literacy means for a Class 3 child',
+        note: 'Collect two data points, one story and one quote-free original line per theme.',
+        pyqs: [{ year: 2015, count: 1 }, { year: 2019, count: 1 }, { year: 2022, count: 1 }],
+      },
+      {
+        id: 'e-philo',
+        name: 'Philosophical themes',
+        news: 'Explainer: How to approach an abstract essay prompt in the first ten minutes',
+        note: 'Brainstorm dimensions: individual, society, nation, world; then pick a thread.',
+        pyqs: [{ year: 2018, count: 1 }, { year: 2022, count: 1 }, { year: 2024, count: 1 }],
+      },
+    ],
+  },
+];
