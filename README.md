@@ -32,7 +32,7 @@ news to your syllabus", the page shows it happening.
 5. Interactive Syllabus Map (ARIA tabs: Prelims, GS I–IV, Essay)
 6. How it works: Prelims → Mains → Interview journey
 7. "Letters from aspirants" (placeholder testimonials) and an illustrative stat strip
-8. FAQ accordion
+8. Comparison table ("Why choose the Daily Edition") with three quick FAQ answers below it
 9. Final CTA band
 10. Footer
 
@@ -80,6 +80,7 @@ Everything below is **sample or placeholder content** created for this design su
 | Feature micro-previews (scores, years, notes) | Illustrative visuals only. |
 | Testimonials (`src/data/testimonials.js`) | Placeholder letters. Not real people or quotes; no names, photos, ranks or marks. Labelled in the UI. |
 | Stat strip | Illustrative values, labelled in the UI. Not measured metrics. |
+| Comparison table (`src/data/compare.js`) | Illustrative, original copy, labelled in the UI. "Typical alternatives" means broad categories (classroom coaching, test series, generic AI chatbots, self-study); no institution is named or assessed, and no rankings or statistics are claimed. |
 | FAQ (`src/data/faq.js`) | Describes intended product behaviour; makes no promise of results. |
 | All CTAs (Start free, Log in, mock tests, drills, footer links, social icons) | **Non-functional.** Each opens a "Coming soon in the full product" dialog. No account is created and nothing is saved. |
 | Social icons | Generic lucide icons, no brand logos. |
