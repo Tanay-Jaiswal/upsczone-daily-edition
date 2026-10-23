@@ -38,7 +38,7 @@ export default function SampleQuiz() {
       className="border-y border-rule bg-white/50 py-16 outline-none lg:py-20"
     >
       <div className="edition grid gap-10 lg:grid-cols-12">
-        <div className="lg:col-span-4">
+        <div data-reveal className="reveal lg:col-span-4">
           <p className="kicker">{t('quiz.kicker')}</p>
           <h2 id="quiz-title" className="section-title mt-3">
             {t('quiz.title')}
@@ -50,7 +50,7 @@ export default function SampleQuiz() {
           <span className="label-sample mt-5">Sample questions</span>
         </div>
 
-        <div className="lg:col-span-8">
+        <div data-reveal className="reveal lg:col-span-8">
           <div className="rounded-2xl border border-ink bg-paper p-5 shadow-[6px_6px_0_0_#1C1B19] sm:p-8">
             {!finished ? (
               <>

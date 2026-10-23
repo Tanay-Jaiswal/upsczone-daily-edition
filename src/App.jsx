@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { UIContext } from './context.js';
 import { translate } from './i18n.js';
+import { useScrollReveal } from './motion.js';
 import Navbar from './components/Navbar.jsx';
 import Hero from './components/Hero.jsx';
 import SampleQuiz from './components/SampleQuiz.jsx';
@@ -17,6 +18,7 @@ export default function App() {
   const [lang, setLang] = useState('en');
   const [soon, setSoon] = useState(null);
   const lastTrigger = useRef(null);
+  useScrollReveal();
 
   useEffect(() => {
     document.documentElement.lang = lang;

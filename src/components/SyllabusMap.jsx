@@ -56,7 +56,7 @@ export default function SyllabusMap() {
   return (
     <section id="syllabus" aria-labelledby="syllabus-title" className="bg-ink py-20 text-paper lg:py-28">
       <div className="edition">
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+        <div data-reveal className="reveal flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-2xl">
             <p className="kicker !text-highlighter">{t('syllabus.kicker')}</p>
             <h2 id="syllabus-title" className="section-title mt-3 !text-paper">
@@ -69,7 +69,7 @@ export default function SyllabusMap() {
           </span>
         </div>
 
-        <div className="mt-10 rounded-2xl bg-paper p-4 text-ink sm:p-6 lg:p-8">
+        <div data-reveal className="reveal mt-10 rounded-2xl bg-paper p-4 text-ink sm:p-6 lg:p-8">
           <div
             role="tablist"
             aria-label="Syllabus papers"
@@ -130,6 +130,7 @@ export default function SyllabusMap() {
             </div>
 
             <div aria-live="polite" className="mt-8">
+              <div key={topic.id} className="swap-in">
               <h3 className="font-serif text-2xl font-semibold">
                 {topic.name}
                 <span className="ml-2 align-middle font-sans text-xs font-semibold uppercase tracking-wider text-ink-muted">
@@ -166,6 +167,7 @@ export default function SyllabusMap() {
                   </button>
                 </Node>
               </ol>
+              </div>
             </div>
           </div>
         </div>

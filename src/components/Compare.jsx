@@ -9,32 +9,6 @@ import FAQ from './FAQ.jsx';
 // same hard offset shadow as the sample quiz card, stitched across table cells
 // (shadow lives in .cmp-clip so it can animate in).
 const CLIP_SIDES = 'border-x-2 border-ink bg-white';
-const CAN_ANIMATE = typeof window !== 'undefined' && 'IntersectionObserver' in window;
-const STAGGER_MS = 90;
-
-// Reveals every [data-reveal] element inside the section once it scrolls into
-// view. Elements arriving in the same batch are staggered.
-function useScrollReveal(rootRef) {
-  useEffect(() => {
-    const root = rootRef.current;
-    if (!root || !CAN_ANIMATE) return undefined;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries
-          .filter((e) => e.isIntersecting)
-          .forEach((entry, i) => {
-            entry.target.style.setProperty('--delay', `${i * STAGGER_MS}ms`);
-            entry.target.classList.add('is-in');
-            observer.unobserve(entry.target);
-          });
-      },
-      { rootMargin: '0px 0px -12% 0px', threshold: 0.15 }
-    );
-    root.querySelectorAll('[data-reveal]').forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, [rootRef]);
-}
-
 // Thin reading-progress rule pinned under the navbar while the section is on screen.
 function useSectionProgress(rootRef, barRef) {
   useEffect(() => {
@@ -66,7 +40,7 @@ function useSectionProgress(rootRef, barRef) {
 function Answer({ ours, why, whyLabel }) {
   return (
     <div className="grid grid-cols-[1.25rem_1fr] gap-x-3 gap-y-2">
-      <span className="cmp-icon mt-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-success text-white">
+      <span className="pop-in mt-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-success text-white">
         <Check className="h-3 w-3" strokeWidth={3} aria-hidden="true" />
       </span>
       <p className="text-[0.95rem] font-medium leading-relaxed text-ink">{ours}</p>
@@ -94,14 +68,12 @@ export default function Compare() {
   const last = comparison.length - 1;
   const sectionRef = useRef(null);
   const barRef = useRef(null);
-  useScrollReveal(sectionRef);
   useSectionProgress(sectionRef, barRef);
 
   return (
     <section
       id="compare"
       ref={sectionRef}
-      data-animate={CAN_ANIMATE || undefined}
       aria-labelledby="compare-title"
       className="edition relative pb-20 lg:pb-28"
     >
@@ -109,7 +81,7 @@ export default function Compare() {
         <div ref={barRef} className="h-full origin-left scale-x-0 bg-inkblue" />
       </div>
 
-      <div data-reveal className="cmp-reveal max-w-2xl pt-20 lg:pt-[6.75rem]">
+      <div data-reveal className="reveal max-w-2xl pt-20 lg:pt-[6.75rem]">
         <p className="kicker">{t('compare.kicker')}</p>
         <h2 id="compare-title" className="section-title mt-3">
           {t('compare.title')}
@@ -132,10 +104,10 @@ export default function Compare() {
           <thead>
             <tr data-reveal>
               <th scope="col" className="double-rule pb-5 pr-8 pt-6 align-bottom font-serif text-base font-normal italic text-ink-muted">
-                <span className="cmp-reveal block">{t('compare.colQuestion')}</span>
+                <span className="reveal-child block">{t('compare.colQuestion')}</span>
               </th>
               <th scope="col" className="double-rule pb-5 pr-8 pt-6 align-bottom font-serif text-base font-normal italic text-ink-muted">
-                <span className="cmp-reveal block">{t('compare.colOthers')}</span>
+                <span className="reveal-child block">{t('compare.colOthers')}</span>
               </th>
               <th
                 scope="col"
@@ -156,10 +128,10 @@ export default function Compare() {
                   scope="row"
                   className="border-t border-rule py-7 pr-8 align-top font-serif text-xl font-semibold leading-snug text-ink transition-colors group-hover:text-inkblue"
                 >
-                  <span className="cmp-reveal block">{row.question}</span>
+                  <span className="reveal-child block">{row.question}</span>
                 </th>
                 <td className="border-t border-rule py-7 pr-8 align-top">
-                  <div className="cmp-reveal">
+                  <div className="reveal-child">
                     <Usual text={row.others} />
                   </div>
                 </td>
@@ -168,7 +140,7 @@ export default function Compare() {
                     i === 0 ? 'border-t-2 border-t-ink' : 'border-t border-t-rule'
                   } ${i === last ? 'cmp-clip-last rounded-b-2xl border-b-2' : 'cmp-clip'}`}
                 >
-                  <div className="cmp-reveal">
+                  <div className="reveal-child">
                     <Answer ours={row.ours} why={row.why} whyLabel={t('compare.why')} />
                   </div>
                 </td>
@@ -176,7 +148,7 @@ export default function Compare() {
             ))}
             <tr data-reveal>
               <td colSpan={2} className="border-t border-rule pr-8 pt-8 align-top text-sm leading-relaxed text-ink-muted">
-                <span className="cmp-reveal block">
+                <span className="reveal-child block">
                   {alternativesNote} Good teachers and mentors still matter; the edition is built to work alongside them.
                 </span>
               </td>
@@ -184,7 +156,7 @@ export default function Compare() {
                 <button
                   type="button"
                   onClick={() => openSoon("Today's edition")}
-                  className="cmp-reveal btn-primary w-full py-3.5 text-base"
+                  className="reveal-child btn-primary w-full py-3.5 text-base"
                 >
                   {t('hero.cta')}
                   <ArrowRight className="h-5 w-5" aria-hidden="true" />
@@ -198,7 +170,7 @@ export default function Compare() {
       {/* Mobile: one card per question, same visual language */}
       <ul className="mt-10 space-y-6 md:hidden">
         {comparison.map((row) => (
-          <li key={row.question} data-reveal className="cmp-reveal double-rule pt-5">
+          <li key={row.question} data-reveal className="reveal double-rule pt-5">
             <h3 className="font-serif text-xl font-semibold leading-snug">{row.question}</h3>
             <p className="mt-4 font-serif text-sm italic text-ink-muted">{t('compare.colOthers')}</p>
             <div className="mt-2">
@@ -215,7 +187,7 @@ export default function Compare() {
           </li>
         ))}
       </ul>
-      <div data-reveal className="cmp-reveal mt-8 space-y-5 md:hidden">
+      <div data-reveal className="reveal mt-8 space-y-5 md:hidden">
         <p className="text-sm leading-relaxed text-ink-muted">
           {alternativesNote} Good teachers and mentors still matter; the edition is built to work alongside them.
         </p>

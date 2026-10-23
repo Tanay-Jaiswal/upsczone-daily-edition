@@ -1,10 +1,13 @@
 import { ArrowUpRight } from 'lucide-react';
 import { useUI } from '../context.js';
 
-export default function NewsCard({ item, index }) {
+export default function NewsCard({ item, index, className = '', style }) {
   const { openSoon } = useUI();
   return (
-    <article className="card-lift group relative flex w-[82%] shrink-0 snap-start flex-col rounded-xl border border-rule bg-white/70 p-5 sm:w-[60%] lg:w-auto">
+    <article
+      style={style}
+      className={`card-lift group relative flex w-[82%] shrink-0 snap-start flex-col rounded-xl border border-rule bg-white/70 p-5 sm:w-[60%] lg:w-auto ${className}`}
+    >
       <div className="flex items-center justify-between gap-3">
         <span className="chip">
           {item.paper} · {item.topic}

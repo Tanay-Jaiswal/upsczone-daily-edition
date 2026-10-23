@@ -8,7 +8,7 @@ export default function FAQ() {
   const { t } = useUI();
   const [open, setOpen] = useState(-1);
   return (
-    <div className="mt-16 grid gap-6 lg:grid-cols-12">
+    <div data-reveal className="reveal mt-16 grid gap-6 lg:grid-cols-12">
       <div className="lg:col-span-4">
         <h3 className="font-serif text-2xl font-semibold">{t('faq.title')}</h3>
         <p className="mt-2 text-sm text-ink-muted">

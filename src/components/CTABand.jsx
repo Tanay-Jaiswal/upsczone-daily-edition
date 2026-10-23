@@ -5,7 +5,7 @@ export default function CTABand() {
   const { t, openSoon } = useUI();
   return (
     <section aria-labelledby="cta-title" className="edition pb-20 lg:pb-28">
-      <div className="relative overflow-hidden rounded-3xl bg-inkblue px-6 py-14 text-center text-white sm:px-12 lg:py-20">
+      <div data-reveal className="reveal relative overflow-hidden rounded-3xl bg-inkblue px-6 py-14 text-center text-white sm:px-12 lg:py-20">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 opacity-[0.08]"

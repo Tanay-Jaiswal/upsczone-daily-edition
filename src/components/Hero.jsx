@@ -24,7 +24,8 @@ export default function Hero() {
   return (
     <section id="top" aria-labelledby="hero-title" className="edition pb-16 pt-6 sm:pt-10 lg:pb-24">
       {/* Masthead strip */}
-      <div className="double-rule flex flex-wrap items-center justify-between gap-x-6 gap-y-1 border-b border-rule py-2 text-xs text-ink-muted">
+      <div className="relative flex flex-wrap items-center justify-between gap-x-6 gap-y-1 border-b border-rule py-2 pt-[calc(0.5rem+3px)] text-xs text-ink-muted">
+        <span aria-hidden="true" className="hero-rule double-rule absolute inset-x-0 top-0" />
         <span className="font-semibold uppercase tracking-[0.18em]">Vol. I · Concept edition</span>
         <span className="hidden font-serif italic sm:inline">For UPSC Civil Services aspirants</span>
         <span>Current affairs · PYQs · Notes · Mocks</span>
@@ -32,19 +33,20 @@ export default function Hero() {
 
       <div className="mt-10 grid grid-cols-1 gap-12 lg:mt-14 lg:grid-cols-12 lg:gap-0">
         <div className="lg:col-span-7 lg:pr-12">
-          <p className="kicker">
+          <p className="hero-in kicker" style={{ '--i': 1 }}>
             {t('hero.edition')} · <time dateTime={isoDate}>{today}</time>
           </p>
           <h1
             id="hero-title"
-            className="hero-title mt-4 font-serif text-[2.6rem] font-semibold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl"
+            style={{ '--i': 2 }}
+            className="hero-in hero-title mt-4 font-serif text-[2.6rem] font-semibold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl"
           >
             {t('hero.titleBefore')}
             <span className="marker whitespace-nowrap">{t('hero.titleMark')}</span>
             {t('hero.titleAfter')}
           </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-muted sm:text-xl">{t('hero.sub')}</p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <p className="hero-in mt-6 max-w-xl text-lg leading-relaxed text-ink-muted sm:text-xl" style={{ '--i': 3 }}>{t('hero.sub')}</p>
+          <div className="hero-in mt-8 flex flex-col gap-3 sm:flex-row sm:items-center" style={{ '--i': 4 }}>
             <button type="button" onClick={() => openSoon("Today's edition")} className="btn-primary px-6 py-3.5 text-base">
               {t('hero.cta')}
               <ArrowRight className="h-5 w-5" aria-hidden="true" />
@@ -56,18 +58,20 @@ export default function Hero() {
           </div>
 
           {/* How one story connects, in one line */}
-          <ol className="mt-10 flex flex-wrap items-center gap-2 text-sm text-ink-muted" aria-label="How a story connects">
+          <ol style={{ '--i': 5 }} className="hero-in mt-10 flex flex-wrap items-center gap-2 text-sm text-ink-muted" aria-label="How a story connects">
             {['News', 'GS syllabus', 'PYQs', 'Practice'].map((step, i, arr) => (
               <li key={step} className="flex items-center gap-2">
                 <span className="rounded-full border border-rule bg-white/70 px-3 py-1 font-medium text-ink">{step}</span>
-                {i < arr.length - 1 && <ArrowRight className="h-4 w-4" aria-hidden="true" />}
+                {i < arr.length - 1 && (
+                  <ArrowRight className="hero-nudge h-4 w-4" style={{ '--i': i }} aria-hidden="true" />
+                )}
               </li>
             ))}
           </ol>
         </div>
 
         <div className="lg:col-span-5 lg:border-l lg:border-rule lg:pl-12">
-          <div className="flex items-baseline justify-between">
+          <div className="hero-in-side flex items-baseline justify-between" style={{ '--i': 3 }}>
             <h2 className="kicker">{t('hero.frontPage')}</h2>
             <span className="label-sample">Sample</span>
           </div>
@@ -78,10 +82,12 @@ export default function Hero() {
             aria-label="Sample news stories"
           >
             {news.map((item, i) => (
-              <NewsCard key={item.id} item={item} index={i} />
+              <NewsCard key={item.id} item={item} index={i} className="hero-in-side" style={{ '--i': i + 4 }} />
             ))}
           </div>
-          <p className="mt-3 text-xs italic text-ink-muted">{t('hero.caption')}</p>
+          <p className="hero-in mt-3 text-xs italic text-ink-muted" style={{ '--i': 7 }}>
+            {t('hero.caption')}
+          </p>
         </div>
       </div>
     </section>

@@ -122,15 +122,15 @@ export default function Navbar() {
               <a
                 href={`#${l.id}`}
                 aria-current={active === l.id ? 'true' : undefined}
-                className={`relative rounded-full px-3 py-2 text-sm font-medium transition ${
+                className={`group relative rounded-full px-3 py-2 text-sm font-medium transition ${
                   active === l.id ? 'text-inkblue' : 'text-ink-muted hover:text-ink'
                 }`}
               >
                 {t(l.key)}
                 <span
                   aria-hidden="true"
-                  className={`absolute inset-x-3 -bottom-0.5 h-0.5 origin-left rounded bg-inkblue transition-transform ${
-                    active === l.id ? 'scale-x-100' : 'scale-x-0'
+                  className={`absolute inset-x-3 -bottom-0.5 h-0.5 origin-left rounded transition-transform duration-300 ${
+                    active === l.id ? 'scale-x-100 bg-inkblue' : 'scale-x-0 bg-ink/30 group-hover:scale-x-100'
                   }`}
                 />
               </a>
