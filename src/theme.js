@@ -28,19 +28,6 @@ function remember(theme) {
   }
 }
 
-const hasSaved = () => {
-  try {
-    return localStorage.getItem(KEY) !== null;
-  } catch {
-    return false;
-  }
-};
-
-// Follow the operating system until the visitor makes a choice of their own.
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-  if (!hasSaved()) apply(e.matches ? 'dark' : 'light');
-});
-
 export function useTheme() {
   return useSyncExternalStore(subscribe, read, () => 'light');
 }
