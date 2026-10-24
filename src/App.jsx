@@ -4,6 +4,8 @@ import { translate } from './i18n.js';
 import { useScrollReveal } from './motion.js';
 import Navbar from './components/Navbar.jsx';
 import Hero from './components/Hero.jsx';
+import TodaysClasses from './components/TodaysClasses.jsx';
+import LearningPaths from './components/LearningPaths.jsx';
 import SampleQuiz from './components/SampleQuiz.jsx';
 import Features from './components/Features.jsx';
 import SyllabusMap from './components/SyllabusMap.jsx';
@@ -50,6 +52,8 @@ export default function App() {
       <Navbar />
       <main id="main">
         <Hero />
+        <TodaysClasses />
+        <LearningPaths />
         <SampleQuiz />
         <Features />
         <SyllabusMap />

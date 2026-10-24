@@ -26,17 +26,20 @@ news to your syllabus", the page shows it happening.
 
 1. Sticky navbar with active-section highlight, EN / हिं toggle, full-screen mobile menu
 2. Hero "front page" with today's date and three sample news cards (swipeable strip on mobile)
-3. Working 3-question sample quiz with instant feedback and a score
-4. Features as newspaper sections: AI Mock Tests, Current Affairs, Smart Notes, PYQ Explorer
+3. Today's Classes: a dated carousel of demo class cards (live, upcoming, completed) with prev/next,
+   drag and swipe; every action opens the coming-soon dialog
+4. Find Your Path to Success: a carousel of learning-path cards built from the concept's tools
+5. Working 3-question sample quiz with instant feedback and a score
+6. Features as newspaper sections: AI Mock Tests, Current Affairs, Smart Notes, PYQ Explorer
    (+ AI Answer Evaluation, AI Doubt Solver, Hindi + English)
-5. Interactive Syllabus Map (ARIA tabs: Prelims, GS I–IV, Essay)
-6. How it works: Prelims → Mains → Interview journey
-7. Stories: "India Is Preparing. One Aspirant at a Time." An India map that draws itself on scroll,
+7. Interactive Syllabus Map (ARIA tabs: Prelims, GS I–IV, Essay)
+8. How it works: Prelims → Mains → Interview journey
+9. Stories: "India Is Preparing. One Aspirant at a Time." An India map that draws itself on scroll,
    with placeholder story markers (hover, focus, click or tap), a featured story card, a swipeable
    story strip with gentle auto-advance on desktop, and an empty, layout-only video slot
-8. Comparison table ("Why choose the Daily Edition") with three quick FAQ answers below it
-9. Final CTA band
-10. Footer
+10. Comparison table ("Why choose the Daily Edition") with three quick FAQ answers below it
+11. Final CTA band
+12. Footer
 
 ## Screenshots
 
@@ -80,6 +83,8 @@ Everything below is **sample or placeholder content** created for this design su
 | Sample quiz (`src/data/quiz.js`) | Original questions written for the concept. The quiz logic works; answers were checked against standard references. |
 | Syllabus Map (`src/data/syllabus.js`) | Illustrative data. Headlines, notes and PYQ year counts are placeholders, not an analysis of real papers. Labelled "Illustrative data" in the UI. |
 | Feature micro-previews (scores, years, notes) | Illustrative visuals only. |
+| Today's Classes (`src/data/learning.js`) | Demonstration data. No real classes, teachers, meeting links or recordings exist; faculty are generic roles and times are illustrative. Labelled "Demo schedule" in the UI; Join, View details and Watch recording open the coming-soon dialog. The date is the visitor's real current date. |
+| Learning paths (`src/data/learning.js`) | Concept paths assembled from the tools described on the page. No durations, lesson counts or prices. Labelled "Concept paths". |
 | Stories (`src/data/stories.js`) | Placeholder stories. Not real people or quotes: personas and cities only, with no names, photos, ranks, marks, exam years, ratings or outcomes. Labelled "Sample testimonials (placeholder)" in the UI. |
 | Story map markers | Illustrative locations, not user data. Labelled in the UI. |
 | Video story slot | Layout only. No video exists; the slot says so. |

@@ -13,6 +13,7 @@ export default {
         rule: '#D9D4C7',
         success: '#2E7D4F',
         error: '#B3261E',
+        live: '#C2410C',
       },
       fontFamily: {
         serif: ['Fraunces', 'Georgia', 'serif'],

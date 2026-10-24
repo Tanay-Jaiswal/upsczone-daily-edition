@@ -105,7 +105,8 @@
   }
 }
 
-.map-pulse {
+.map-pulse,
+.live-ping {
   opacity: 0;
 }
 
@@ -261,6 +262,11 @@
     }
   }
 
+  /* Live badge: a soft ping on the dot */
+  [data-motion] .live-ping {
+    animation: live-ping 1.8s ease-out infinite;
+  }
+
   /* Content swap feedback (syllabus topic change) */
   .swap-in {
     animation: swap-in 420ms var(--ease-out) both;
@@ -305,5 +311,15 @@
   to {
     opacity: 0;
     transform: scale(2.2);
+  }
+}
+@keyframes live-ping {
+  from {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(2.6);
   }
 }
