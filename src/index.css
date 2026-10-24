@@ -55,7 +55,20 @@
     @apply inline-flex items-center justify-center gap-2 rounded-full bg-inkblue px-5 py-3 text-sm font-semibold text-white transition duration-200 hover:bg-inkblue-dark active:scale-[0.98] [&>svg]:transition-transform [&>svg]:duration-200 hover:[&>svg]:translate-x-0.5;
   }
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 rounded-full border border-ink px-5 py-3 text-sm font-semibold text-ink transition duration-200 hover:bg-ink hover:text-paper active:scale-[0.98];
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-ink px-5 py-3 text-sm font-semibold text-ink transition duration-200 hover:bg-ink hover:text-paper active:scale-[0.98] [&>svg]:transition-transform [&>svg]:duration-200 hover:[&>svg]:translate-x-0.5;
+  }
+  /* Text link whose underline slides in from the left on hover and focus. */
+  .link-slide {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 0% 1.5px;
+    padding-bottom: 2px;
+    transition: background-size 300ms var(--ease-out), color 200ms ease;
+  }
+  .link-slide:hover,
+  .link-slide:focus-visible {
+    background-size: 100% 1.5px;
   }
   .card-lift {
     @apply transition duration-200 hover:-translate-y-1 hover:shadow-lift;
@@ -105,7 +118,8 @@
   }
 }
 
-.map-pulse {
+.map-pulse,
+.live-ping {
   opacity: 0;
 }
 
@@ -261,6 +275,11 @@
     }
   }
 
+  /* Live badge: a soft ping on the dot */
+  [data-motion] .live-ping {
+    animation: live-ping 1.8s ease-out infinite;
+  }
+
   /* Content swap feedback (syllabus topic change) */
   .swap-in {
     animation: swap-in 420ms var(--ease-out) both;
@@ -305,5 +324,15 @@
   to {
     opacity: 0;
     transform: scale(2.2);
+  }
+}
+@keyframes live-ping {
+  from {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(2.6);
   }
 }

@@ -24,6 +24,13 @@ export const strings = {
     'hero.frontPage': 'On the front page',
     'hero.caption': 'Sample content for design preview',
 
+    'classes.title': "Today's Classes",
+    'classes.sub': 'Your learning plan for today, all in one place.',
+
+    'paths.kicker': 'Learning paths',
+    'paths.title': 'Find Your Path to Success',
+    'paths.sub': 'Focused preparation, designed around your goals.',
+
     'quiz.kicker': 'The Daily Three',
     'quiz.title': 'Three questions before your chai goes cold',
     'quiz.cta': 'Get a full AI mock test',
@@ -76,6 +83,13 @@ export const strings = {
     'hero.try': '3 सवालों का नमूना आज़माएँ',
     'hero.frontPage': 'मुखपृष्ठ पर',
     'hero.caption': 'डिज़ाइन प्रीव्यू के लिए नमूना सामग्री',
+
+    'classes.title': 'आज की कक्षाएँ',
+    'classes.sub': 'आज की पढ़ाई की पूरी योजना, एक ही जगह।',
+
+    'paths.kicker': 'तैयारी के रास्ते',
+    'paths.title': 'सफलता तक अपना रास्ता चुनें',
+    'paths.sub': 'आपके लक्ष्यों के अनुसार केंद्रित तैयारी।',
 
     'quiz.kicker': 'आज के तीन सवाल',
     'quiz.title': 'चाय ठंडी होने से पहले तीन सवाल',

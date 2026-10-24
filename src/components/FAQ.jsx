@@ -34,7 +34,14 @@ export default function FAQ() {
                   className="flex w-full items-center justify-between gap-6 py-4 text-left font-semibold"
                 >
                   {item.q}
-                  <Plus className={`h-5 w-5 shrink-0 transition-transform ${isOpen ? 'rotate-45' : ''}`} aria-hidden="true" />
+                  <span
+                    aria-hidden="true"
+                    className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full border transition-colors duration-300 ${
+                      isOpen ? 'border-ink bg-ink text-paper' : 'border-rule text-ink'
+                    }`}
+                  >
+                    <Plus className={`h-4 w-4 transition-transform duration-300 ${isOpen ? 'rotate-45' : ''}`} />
+                  </span>
                 </button>
               </h4>
               <div

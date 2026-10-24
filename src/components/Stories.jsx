@@ -262,7 +262,7 @@ function StripCard({ story, onLocate }) {
         <button
           type="button"
           onClick={onLocate}
-          className="flex shrink-0 items-center gap-1 rounded-full px-2 py-1.5 text-xs font-semibold text-inkblue hover:underline"
+          className="link-slide flex shrink-0 items-center gap-1 rounded-full px-2 py-1.5 text-xs font-semibold text-inkblue"
         >
           <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
           On map

@@ -2,9 +2,12 @@ import { ArrowDown, ArrowRight } from 'lucide-react';
 import { useUI } from '../context.js';
 import { news } from '../data/news.js';
 import NewsCard from './NewsCard.jsx';
+import { RailArrows } from './CardRail.jsx';
+import { useCarousel } from '../useCarousel.js';
 
 export default function Hero() {
   const { t, lang, openSoon } = useUI();
+  const rail = useCarousel();
   const today = new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', {
     weekday: 'long',
     day: 'numeric',
@@ -71,18 +74,32 @@ export default function Hero() {
         </div>
 
         <div className="lg:col-span-5 lg:border-l lg:border-rule lg:pl-12">
-          <div className="hero-in-side flex items-baseline justify-between" style={{ '--i': 3 }}>
+          <div className="hero-in-side flex items-center justify-between gap-3" style={{ '--i': 3 }}>
             <h2 className="kicker">{t('hero.frontPage')}</h2>
-            <span className="label-sample">Sample</span>
+            <div className="flex items-center gap-3">
+              <span className="label-sample">Sample</span>
+              <div className="lg:hidden">
+                <RailArrows rail={rail} label="news stories" />
+              </div>
+            </div>
           </div>
           <div
-            className="no-scrollbar -mx-4 mt-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 lg:mx-0 lg:flex-col lg:overflow-visible lg:px-0"
+            ref={rail.trackRef}
+            className="no-scrollbar -mx-4 mt-4 flex snap-x snap-mandatory scroll-px-4 gap-4 overflow-x-auto overscroll-x-contain px-4 pb-2 lg:mx-0 lg:scroll-px-0 lg:flex-col lg:overflow-visible lg:px-0"
             tabIndex={0}
             role="region"
             aria-label="Sample news stories"
           >
             {news.map((item, i) => (
               <NewsCard key={item.id} item={item} index={i} className="hero-in-side" style={{ '--i': i + 4 }} />
+            ))}
+          </div>
+          <div aria-hidden="true" className="mt-1 flex justify-center gap-1.5 lg:hidden">
+            {news.map((item, i) => (
+              <span
+                key={item.id}
+                className={`h-1.5 rounded-full transition-all duration-300 ${i === rail.edges.active ? 'w-5 bg-ink' : 'w-1.5 bg-rule'}`}
+              />
             ))}
           </div>
           <p className="hero-in mt-3 text-xs italic text-ink-muted" style={{ '--i': 7 }}>

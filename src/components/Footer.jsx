@@ -18,7 +18,7 @@ const SOCIAL = [
 export default function Footer() {
   const { openSoon } = useUI();
   const year = new Date().getFullYear();
-  const linkClass = 'text-sm text-paper/70 transition hover:text-paper';
+  const linkClass = 'link-slide text-sm text-paper/70 hover:text-paper';
 
   return (
     <footer className="bg-ink text-paper">
@@ -73,7 +73,7 @@ export default function Footer() {
           <ul className="flex flex-wrap gap-x-5 gap-y-2">
             {['Privacy policy', 'Terms of use', 'Refund policy'].map((l) => (
               <li key={l}>
-                <button type="button" onClick={() => openSoon(l)} className="hover:text-paper">
+                <button type="button" onClick={() => openSoon(l)} className="link-slide hover:text-paper">
                   {l}
                 </button>
               </li>
