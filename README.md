@@ -84,6 +84,7 @@ Everything below is **sample or placeholder content** created for this design su
 | Syllabus Map (`src/data/syllabus.js`) | Illustrative data. Headlines, notes and PYQ year counts are placeholders, not an analysis of real papers. Labelled "Illustrative data" in the UI. |
 | Feature micro-previews (scores, years, notes) | Illustrative visuals only. |
 | Today's Classes (`src/data/learning.js`) | Demonstration data. No real classes, teachers, meeting links or recordings exist; faculty are generic roles and times are illustrative. Labelled "Demo schedule" in the UI; Join, View details and Watch recording open the coming-soon dialog. The date is the visitor's real current date. |
+| Learning path mini-pictures | Small CSS drawings of each tool, decorative and not real screenshots. |
 | Learning paths (`src/data/learning.js`) | Concept paths assembled from the tools described on the page. No durations, lesson counts or prices. Labelled "Concept paths". |
 | Stories (`src/data/stories.js`) | Placeholder stories. Not real people or quotes: personas and cities only, with no names, photos, ranks, marks, exam years, ratings or outcomes. Labelled "Sample testimonials (placeholder)" in the UI. |
 | Story map markers | Illustrative locations, not user data. Labelled in the UI. |

@@ -8,7 +8,7 @@ const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: r
 export function useCarousel() {
   const trackRef = useRef(null);
   const thumbRef = useRef(null);
-  const [edges, setEdges] = useState({ start: true, end: true });
+  const [edges, setEdges] = useState({ start: true, end: true, first: 1, last: 1, total: 0, active: 0 });
 
   const sync = useCallback(() => {
     const track = trackRef.current;
@@ -16,7 +16,26 @@ export function useCarousel() {
     const max = track.scrollWidth - track.clientWidth;
     const start = track.scrollLeft <= 4;
     const end = track.scrollLeft >= max - 4;
-    setEdges((prev) => (prev.start === start && prev.end === end ? prev : { start, end }));
+    // Which cards are in view: index of the first fully visible card and how many fit.
+    const total = track.children.length;
+    const card = track.firstElementChild;
+    let first = 1;
+    let last = Math.min(total, 1);
+    let active = 0;
+    if (card) {
+      const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+      const unit = card.offsetWidth + gap;
+      const perView = Math.max(1, Math.round((track.clientWidth + gap) / unit));
+      const idx = Math.min(total - 1, Math.round(track.scrollLeft / unit));
+      first = end ? Math.max(1, total - perView + 1) : idx + 1;
+      last = Math.min(total, first + perView - 1);
+      active = end ? total - 1 : idx;
+    }
+    setEdges((prev) =>
+      prev.start === start && prev.end === end && prev.first === first && prev.last === last && prev.total === total && prev.active === active
+        ? prev
+        : { start, end, first, last, total, active }
+    );
     const thumb = thumbRef.current;
     if (thumb) {
       const ratio = max > 0 ? track.clientWidth / track.scrollWidth : 1;

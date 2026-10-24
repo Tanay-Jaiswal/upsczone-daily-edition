@@ -7,7 +7,12 @@ const ARROW =
 // Prev/next pair, rendered in a section header so it never covers the cards.
 export function RailArrows({ rail, label }) {
   return (
-    <div className="flex shrink-0 gap-2">
+    <div className="flex shrink-0 items-center gap-3">
+      {rail.edges.total > 0 && !(rail.edges.start && rail.edges.end) && (
+        <span aria-hidden="true" className="min-w-[3.5rem] text-right text-xs font-medium tabular-nums text-ink-muted">
+          {rail.edges.first === rail.edges.last ? rail.edges.first : `${rail.edges.first}\u2013${rail.edges.last}`} / {rail.edges.total}
+        </span>
+      )}
       <button
         type="button"
         onClick={() => rail.step(-1)}

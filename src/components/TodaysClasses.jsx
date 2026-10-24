@@ -139,7 +139,7 @@ export default function TodaysClasses() {
     <section
       id="classes"
       aria-labelledby="classes-title"
-      className="border-t border-rule py-20 lg:py-24"
+      className="border-y border-rule bg-white/50 py-20 lg:py-28"
     >
       <div className="edition">
         <div data-reveal className="reveal flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
