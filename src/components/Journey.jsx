@@ -20,7 +20,7 @@ function PrelimsVisual() {
               ? 'border-success bg-success/10 text-ink'
               : o.state === 'out'
                 ? 'border-rule text-ink-muted line-through'
-                : 'border-rule bg-white text-ink'
+                : 'border-rule bg-surface text-ink'
           }`}
         >
           <span className="flex h-5 w-5 items-center justify-center rounded-full border border-current text-[10px] no-underline">
@@ -35,14 +35,14 @@ function PrelimsVisual() {
 
 function MainsVisual() {
   return (
-    <div className="relative rounded-lg border border-rule bg-white p-4 pr-24" aria-hidden="true">
+    <div className="relative rounded-lg border border-rule bg-surface p-4 pr-24" aria-hidden="true">
       <div className="space-y-2.5">
         <span className="block h-1.5 w-full rounded bg-ink/15" />
         <span className="block h-1.5 w-11/12 rounded bg-highlighter" />
         <span className="block h-1.5 w-10/12 rounded bg-ink/15" />
         <span className="block h-1.5 w-7/12 rounded bg-ink/15" />
       </div>
-      <span className="absolute right-3 top-3 w-20 border-l-2 border-inkblue pl-2 font-serif text-[11px] italic leading-snug text-inkblue">
+      <span className="absolute right-3 top-3 w-20 border-l-2 border-inkblue pl-2 font-serif text-[11px] italic leading-snug text-link">
         Add one example here
       </span>
     </div>
@@ -55,7 +55,7 @@ function InterviewVisual() {
       <p className="max-w-[85%] rounded-2xl rounded-bl-sm bg-ink px-4 py-2.5 font-serif text-sm italic text-paper">
         Why does the monsoon matter to an economy?
       </p>
-      <div className="ml-auto max-w-[75%] space-y-1.5 rounded-2xl rounded-br-sm border border-rule bg-white px-4 py-3">
+      <div className="ml-auto max-w-[75%] space-y-1.5 rounded-2xl rounded-br-sm border border-rule bg-surface px-4 py-3">
         <span className="block h-1.5 w-full rounded bg-ink/15" />
         <span className="block h-1.5 w-9/12 rounded bg-ink/15" />
       </div>
@@ -169,7 +169,7 @@ export default function Journey() {
                         <span>
                           <span
                             className={`block text-xs font-semibold transition-colors duration-500 ${
-                              on ? 'text-inkblue' : 'text-ink-muted'
+                              on ? 'text-link' : 'text-ink-muted'
                             }`}
                           >
                             Stage {i + 1} · {stage}
@@ -206,8 +206,8 @@ export default function Journey() {
               </span>
               <div
                 data-reveal
-                className={`reveal w-full lg:rounded-2xl lg:border lg:bg-white/70 lg:p-10 lg:transition-[border-color,box-shadow] lg:duration-500 ${
-                  i === active ? 'lg:border-ink lg:shadow-[6px_6px_0_0_#1C1B19]' : 'lg:border-rule'
+                className={`reveal w-full lg:rounded-2xl lg:border lg:bg-surface/70 lg:p-10 lg:transition-[border-color,box-shadow] lg:duration-500 ${
+                  i === active ? 'lg:border-ink lg:shadow-[6px_6px_0_0_rgb(var(--shadow-ink))]' : 'lg:border-rule'
                 }`}
               >
                 <span className="hidden h-12 w-12 items-center justify-center rounded-full border-2 border-ink bg-paper lg:flex">

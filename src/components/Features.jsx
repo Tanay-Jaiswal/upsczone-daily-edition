@@ -3,10 +3,10 @@ import { useUI } from '../context.js';
 
 function ScorePreview() {
   return (
-    <div className="rounded-lg border border-rule bg-white p-3 text-xs">
+    <div className="rounded-lg border border-rule bg-surface p-3 text-xs">
       <div className="flex justify-between font-semibold">
         <span>Mock 07 · GS-III</span>
-        <span className="text-inkblue">68%</span>
+        <span className="text-link">68%</span>
       </div>
       <div className="mt-2 flex h-2 overflow-hidden rounded-full bg-rule" aria-hidden="true">
         <span className="w-[68%] bg-success" />
@@ -19,7 +19,7 @@ function ScorePreview() {
 
 function NewsPreview() {
   return (
-    <div className="rounded-lg border border-rule bg-white p-3 text-xs">
+    <div className="rounded-lg border border-rule bg-surface p-3 text-xs">
       <p className="font-serif text-sm font-semibold leading-snug">Cold chains and post-harvest loss</p>
       <div className="mt-2 flex items-center gap-1.5 text-ink-muted">
         <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
@@ -31,7 +31,7 @@ function NewsPreview() {
 
 function NotesPreview() {
   return (
-    <div className="rounded-lg border border-rule bg-white p-3 text-xs leading-relaxed">
+    <div className="rounded-lg border border-rule bg-surface p-3 text-xs leading-relaxed">
       <p>
         Article 280 sets up a <span className="bg-highlighter px-0.5">Finance Commission every five years</span>.
       </p>
@@ -43,7 +43,7 @@ function NotesPreview() {
 function PyqPreview() {
   const asked = [2015, 2017, 2018, 2020, 2022, 2023];
   return (
-    <div className="flex flex-wrap gap-1.5 rounded-lg border border-rule bg-white p-3" aria-label="Sample: years a topic was asked">
+    <div className="flex flex-wrap gap-1.5 rounded-lg border border-rule bg-surface p-3" aria-label="Sample: years a topic was asked">
       {Array.from({ length: 10 }, (_, i) => 2015 + i).map((y) => (
         <span
           key={y}
@@ -135,7 +135,7 @@ export default function Features() {
             <button
               type="button"
               onClick={() => openSoon(title)}
-              className="mt-4 inline-flex items-center gap-1 self-start text-sm font-semibold text-inkblue underline-offset-4 hover:underline"
+              className="mt-4 inline-flex items-center gap-1 self-start text-sm font-semibold text-link underline-offset-4 hover:underline"
             >
               Open {title} <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </button>
@@ -148,8 +148,8 @@ export default function Features() {
         <ul className="mt-5 grid gap-4 md:grid-cols-3">
           {MORE.map(({ icon: Icon, title, body }) => (
             <li key={title} className="reveal-child">
-              <div className="card-lift flex h-full gap-4 rounded-xl border border-rule bg-white/60 p-5">
-              <Icon className="mt-0.5 h-6 w-6 shrink-0 text-inkblue" aria-hidden="true" />
+              <div className="card-lift flex h-full gap-4 rounded-xl border border-rule bg-surface/60 p-5">
+              <Icon className="mt-0.5 h-6 w-6 shrink-0 text-link" aria-hidden="true" />
               <div>
                 <p className="font-semibold">{title}</p>
                 <p className="mt-1 text-sm leading-relaxed text-ink-muted">{body}</p>

@@ -13,6 +13,8 @@ export const strings = {
     'nav.menu': 'Open menu',
     'nav.close': 'Close menu',
     'nav.language': 'Language',
+    'nav.toDark': 'Switch to dark theme',
+    'nav.toLight': 'Switch to light theme',
 
     'hero.edition': "Today's Edition",
     'hero.titleBefore': 'Every headline, mapped to ',
@@ -73,6 +75,8 @@ export const strings = {
     'nav.menu': 'मेन्यू खोलें',
     'nav.close': 'मेन्यू बंद करें',
     'nav.language': 'भाषा',
+    'nav.toDark': 'डार्क थीम चालू करें',
+    'nav.toLight': 'लाइट थीम चालू करें',
 
     'hero.edition': 'आज का संस्करण',
     'hero.titleBefore': 'हर ख़बर, ',

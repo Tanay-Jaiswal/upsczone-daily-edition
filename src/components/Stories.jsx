@@ -31,8 +31,8 @@ function MapMarker({ story, index, active, onSelect }) {
           aria-hidden="true"
           className={`relative flex h-8 w-8 items-center justify-center rounded-full border-2 text-[10px] font-bold tracking-wide transition duration-200 group-hover:scale-110 ${
             active
-              ? 'border-ink bg-inkblue text-white shadow-[0_0_0_4px_#F6D65A]'
-              : 'border-ink bg-paper text-ink group-hover:bg-highlighter'
+              ? 'border-ink bg-inkblue text-white shadow-[0_0_0_4px_rgb(var(--highlighter))]'
+              : 'border-ink bg-paper text-ink group-hover:bg-highlighter group-hover:text-on-highlighter'
           }`}
         >
           {story.initials}
@@ -40,7 +40,7 @@ function MapMarker({ story, index, active, onSelect }) {
       </span>
       <span
         aria-hidden="true"
-        className={`pointer-events-none absolute bottom-full mb-1 w-max max-w-[11rem] rounded-lg border border-ink bg-white px-3 py-2 text-left opacity-0 shadow-[3px_3px_0_0_#1C1B19] transition-opacity duration-150 group-focus-visible:opacity-100 [@media(hover:hover)]:group-hover:opacity-100 ${popoverSide(x)}`}
+        className={`pointer-events-none absolute bottom-full mb-1 w-max max-w-[11rem] rounded-lg border border-ink bg-surface px-3 py-2 text-left opacity-0 shadow-[3px_3px_0_0_rgb(var(--shadow-ink))] transition-opacity duration-150 group-focus-visible:opacity-100 [@media(hover:hover)]:group-hover:opacity-100 ${popoverSide(x)}`}
       >
         <span className="block text-xs font-semibold leading-snug text-ink">{story.persona}</span>
         <span className="mt-0.5 flex items-center gap-1 text-[11px] text-ink-muted">
@@ -57,23 +57,21 @@ function IndiaMap({ active, onSelect }) {
     <figure className="relative mx-auto w-full max-w-[520px]">
       <div className="relative" style={{ paddingTop: `${MAP_RATIO * 100}%` }}>
         <svg viewBox={MAP_VIEWBOX} className="absolute inset-0 h-full w-full overflow-visible" aria-hidden="true" focusable="false">
-          <path className="map-fill" d={OUTLINE_PATH} fill="#FFFFFF" />
+          <path className="map-fill fill-surface" d={OUTLINE_PATH} />
           <path
-            className="map-borders"
+            className="map-borders stroke-link"
             d={BORDERS_PATH}
             fill="none"
-            stroke="#1F3A93"
             strokeOpacity="0.35"
             strokeWidth="0.9"
             strokeLinejoin="round"
             vectorEffect="non-scaling-stroke"
           />
           <path
-            className="map-outline"
+            className="map-outline stroke-ink"
             d={OUTLINE_PATH}
             pathLength="1"
             fill="none"
-            stroke="#1C1B19"
             strokeWidth="1.4"
             strokeLinejoin="round"
             vectorEffect="non-scaling-stroke"
@@ -102,7 +100,7 @@ function IndiaMap({ active, onSelect }) {
 function FeaturedStory({ index, onStep }) {
   const story = stories[index];
   return (
-    <div className="rounded-2xl border border-ink bg-paper p-6 shadow-[6px_6px_0_0_#1C1B19] sm:p-8">
+    <div className="rounded-2xl border border-ink bg-paper p-6 shadow-[6px_6px_0_0_rgb(var(--shadow-ink))] sm:p-8">
       <div className="flex items-center justify-between gap-3">
         <p className="kicker">
           Story {String(index + 1).padStart(2, '0')} / {String(stories.length).padStart(2, '0')}
@@ -111,7 +109,7 @@ function FeaturedStory({ index, onStep }) {
       </div>
       <div aria-live="polite" className="mt-5 min-h-[15rem] sm:min-h-[13rem]">
         <article key={story.id} className="swap-in">
-          <span aria-hidden="true" className="block font-serif text-5xl leading-none text-inkblue">
+          <span aria-hidden="true" className="block font-serif text-5xl leading-none text-link">
             &ldquo;
           </span>
           <blockquote className="mt-1 font-serif text-xl leading-relaxed lg:text-[1.35rem]">{story.quote}</blockquote>
@@ -129,7 +127,7 @@ function FeaturedStory({ index, onStep }) {
                 {story.place}
               </span>
             </p>
-            <span className="ml-auto rounded-full border border-rule bg-white px-3 py-1 text-xs font-medium">{story.focus}</span>
+            <span className="ml-auto rounded-full border border-rule bg-surface px-3 py-1 text-xs font-medium">{story.focus}</span>
           </div>
         </article>
       </div>
@@ -162,7 +160,7 @@ function StripCard({ story, onLocate }) {
   return (
     <article className="flex h-full flex-col rounded-2xl border border-rule bg-paper p-6 transition duration-300 ease-out hover:-translate-y-1 hover:border-ink/50 hover:shadow-lift focus-within:border-ink/50">
       <div className="flex items-center justify-between gap-3">
-        <span className="rounded-full border border-rule bg-white px-3 py-1 text-xs font-medium">{story.focus}</span>
+        <span className="rounded-full border border-rule bg-surface px-3 py-1 text-xs font-medium">{story.focus}</span>
         <span className="text-[11px] font-semibold uppercase tracking-wider text-ink-muted">Sample</span>
       </div>
       <blockquote className="mt-4 flex-1 font-serif text-[1.05rem] leading-relaxed">{story.quote}</blockquote>
@@ -180,7 +178,7 @@ function StripCard({ story, onLocate }) {
         <button
           type="button"
           onClick={onLocate}
-          className="link-slide flex shrink-0 items-center gap-1 rounded-full px-2 py-1.5 text-xs font-semibold text-inkblue [&>svg]:transition-transform hover:[&>svg]:-translate-y-0.5"
+          className="link-slide flex shrink-0 items-center gap-1 rounded-full px-2 py-1.5 text-xs font-semibold text-link [&>svg]:transition-transform hover:[&>svg]:-translate-y-0.5"
         >
           <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
           On map
@@ -231,7 +229,7 @@ export default function Stories() {
   };
 
   return (
-    <section id="stories" aria-labelledby="stories-title" className="border-y border-rule bg-white/50 py-20 lg:py-28">
+    <section id="stories" aria-labelledby="stories-title" className="border-y border-rule bg-surface/50 py-20 lg:py-28">
       <div className="edition">
         {/* Stage 1: heading */}
         <div data-reveal className="reveal mx-auto max-w-3xl text-center">
@@ -258,7 +256,7 @@ export default function Stories() {
             ref={mapRef}
             className="relative rounded-3xl border border-rule bg-paper px-4 pb-5 pt-8 sm:px-10 lg:col-span-7"
             style={{
-              backgroundImage: 'radial-gradient(rgba(28,27,25,0.09) 1px, transparent 1px)',
+              backgroundImage: 'radial-gradient(rgb(var(--ink) / 0.09) 1px, transparent 1px)',
               backgroundSize: '18px 18px',
             }}
           >

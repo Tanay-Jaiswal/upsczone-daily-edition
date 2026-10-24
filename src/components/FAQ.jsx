@@ -13,7 +13,7 @@ export default function FAQ() {
         <h3 className="font-serif text-2xl font-semibold">{t('faq.title')}</h3>
         <p className="mt-2 text-sm text-ink-muted">
           Still unsure? Write to{' '}
-          <a href="mailto:info@upsczone.in" className="font-semibold text-inkblue underline underline-offset-4">
+          <a href="mailto:info@upsczone.in" className="font-semibold text-link underline underline-offset-4">
             info@upsczone.in
           </a>
           .

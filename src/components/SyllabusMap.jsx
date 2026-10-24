@@ -5,9 +5,9 @@ import { papers } from '../data/syllabus.js';
 
 function Node({ icon: Icon, label, children, last }) {
   return (
-    <li className="relative flex flex-1 flex-col rounded-xl border border-rule bg-white p-4">
+    <li className="relative flex flex-1 flex-col rounded-xl border border-rule bg-surface p-4">
       <p className="kicker flex items-center gap-2">
-        <Icon className="h-4 w-4 text-inkblue" aria-hidden="true" />
+        <Icon className="h-4 w-4 text-link" aria-hidden="true" />
         {label}
       </p>
       <div className="mt-2 flex-1 text-sm leading-relaxed">{children}</div>
@@ -54,17 +54,17 @@ export default function SyllabusMap() {
   };
 
   return (
-    <section id="syllabus" aria-labelledby="syllabus-title" className="bg-ink py-20 text-paper lg:py-28">
+    <section id="syllabus" aria-labelledby="syllabus-title" className="bg-band py-20 text-on-band lg:py-28">
       <div className="edition">
         <div data-reveal className="reveal flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-2xl">
             <p className="kicker !text-highlighter">{t('syllabus.kicker')}</p>
-            <h2 id="syllabus-title" className="section-title mt-3 !text-paper">
+            <h2 id="syllabus-title" className="section-title mt-3 !text-on-band">
               {t('syllabus.title')}
             </h2>
-            <p className="mt-4 text-lg leading-relaxed text-paper/75">{t('syllabus.sub')}</p>
+            <p className="mt-4 text-lg leading-relaxed text-on-band/75">{t('syllabus.sub')}</p>
           </div>
-          <span className="inline-flex items-center gap-1.5 self-start rounded border border-dashed border-paper/50 px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wider text-paper/80 lg:self-auto">
+          <span className="inline-flex items-center gap-1.5 self-start rounded border border-dashed border-on-band/50 px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wider text-on-band/80 lg:self-auto">
             Illustrative data
           </span>
         </div>
@@ -88,7 +88,7 @@ export default function SyllabusMap() {
                 onClick={() => selectPaper(i)}
                 onKeyDown={onTabKey}
                 className={`relative shrink-0 whitespace-nowrap px-4 py-3 text-sm font-semibold transition ${
-                  i === paperIndex ? 'text-inkblue' : 'text-ink-muted hover:text-ink'
+                  i === paperIndex ? 'text-link' : 'text-ink-muted hover:text-ink'
                 }`}
               >
                 {p.label}
@@ -120,7 +120,7 @@ export default function SyllabusMap() {
                     aria-pressed={on}
                     onClick={() => setTopicId(tp.id)}
                     className={`rounded-full border px-4 py-2 text-sm font-medium transition ${
-                      on ? 'border-ink bg-highlighter text-ink' : 'border-rule bg-white hover:border-ink'
+                      on ? 'border-ink bg-highlighter text-ink' : 'border-rule bg-surface hover:border-ink'
                     }`}
                   >
                     {tp.name}
@@ -143,7 +143,7 @@ export default function SyllabusMap() {
                 </Node>
                 <Node icon={NotebookPen} label="Your notes">
                   <p>
-                    <span className="bg-highlighter/70 px-0.5">{topic.note}</span>
+                    <span className="bg-highlighter/70 px-0.5 text-on-highlighter">{topic.note}</span>
                   </p>
                 </Node>
                 <Node icon={History} label="PYQs">

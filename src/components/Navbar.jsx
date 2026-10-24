@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { useUI } from '../context.js';
+import ThemeToggle from './ThemeToggle.jsx';
 
 export const NAV_LINKS = [
   { id: 'features', key: 'nav.features' },
@@ -27,7 +28,7 @@ function LangToggle({ className = '' }) {
     <div
       role="group"
       aria-label={t('nav.language')}
-      className={`inline-flex rounded-full border border-rule bg-white/60 p-0.5 text-xs font-semibold ${className}`}
+      className={`inline-flex rounded-full border border-rule bg-surface/60 p-0.5 text-xs font-semibold ${className}`}
     >
       {[
         ['en', 'EN', 'English'],
@@ -123,7 +124,7 @@ export default function Navbar() {
                 href={`#${l.id}`}
                 aria-current={active === l.id ? 'true' : undefined}
                 className={`group relative rounded-full px-3 py-2 text-sm font-medium transition ${
-                  active === l.id ? 'text-inkblue' : 'text-ink-muted hover:text-ink'
+                  active === l.id ? 'text-link' : 'text-ink-muted hover:text-ink'
                 }`}
               >
                 {t(l.key)}
@@ -140,10 +141,11 @@ export default function Navbar() {
 
         <div className="flex items-center gap-2 sm:gap-3">
           <LangToggle className="hidden sm:inline-flex" />
+          <ThemeToggle />
           <button
             type="button"
             onClick={() => openSoon('Log in')}
-            className="hidden rounded px-2 py-2 text-sm font-semibold text-ink hover:text-inkblue lg:inline-block"
+            className="hidden rounded px-2 py-2 text-sm font-semibold text-ink hover:text-link lg:inline-block"
           >
             {t('nav.login')}
           </button>
@@ -204,7 +206,10 @@ export default function Navbar() {
             ))}
           </ul>
           <div className="edition flex flex-col gap-4 pb-8 pt-4">
-            <LangToggle className="self-start" />
+            <div className="flex items-center gap-3 self-start">
+              <LangToggle />
+              <ThemeToggle />
+            </div>
             <div className="flex gap-3">
               <button
                 type="button"

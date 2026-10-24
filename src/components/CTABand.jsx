@@ -21,7 +21,7 @@ export default function CTABand() {
         <button
           type="button"
           onClick={() => openSoon("Tomorrow's edition")}
-          className="relative mt-8 inline-flex items-center gap-2 rounded-full bg-highlighter px-7 py-4 text-base font-semibold text-ink transition hover:bg-white"
+          className="relative mt-8 inline-flex items-center gap-2 rounded-full bg-highlighter px-7 py-4 text-base font-semibold text-ink transition hover:bg-surface"
         >
           {t('cta.button')}
           <ArrowRight className="h-5 w-5" aria-hidden="true" />

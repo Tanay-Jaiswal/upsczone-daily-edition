@@ -6,7 +6,7 @@ import { RailArrows, RailTrack, useCarousel } from './CardRail.jsx';
 
 const STATUS = {
   live: { label: 'Live now', className: 'bg-live text-white' },
-  upcoming: { label: 'Upcoming', className: 'bg-inkblue/10 text-inkblue' },
+  upcoming: { label: 'Upcoming', className: 'bg-inkblue/10 text-link' },
   completed: { label: 'Completed', className: 'bg-ink/[0.06] text-ink-muted' },
 };
 
@@ -19,8 +19,8 @@ function StatusBadge({ status }) {
     <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider transition-colors duration-300 ${s.className}`}>
       {status === 'live' && (
         <span aria-hidden="true" className="relative flex h-1.5 w-1.5">
-          <span className="live-ping absolute inset-0 rounded-full bg-white" />
-          <span className="relative h-1.5 w-1.5 rounded-full bg-white" />
+          <span className="live-ping absolute inset-0 rounded-full bg-surface" />
+          <span className="relative h-1.5 w-1.5 rounded-full bg-surface" />
         </span>
       )}
       {s.label}
@@ -62,12 +62,12 @@ function ClassCard({ item }) {
   const live = item.status === 'live';
   return (
     <article
-      className={`flex h-full flex-col rounded-2xl border bg-white p-5 transition duration-200 hover:-translate-y-1 hover:shadow-lift sm:p-6 ${
-        live ? 'border-ink shadow-[4px_4px_0_0_#1C1B19] hover:shadow-[4px_4px_0_0_#1C1B19]' : 'border-rule hover:border-ink/40'
+      className={`flex h-full flex-col rounded-2xl border bg-surface p-5 transition duration-200 hover:-translate-y-1 hover:shadow-lift sm:p-6 ${
+        live ? 'border-ink shadow-[4px_4px_0_0_rgb(var(--shadow-ink))] hover:shadow-[4px_4px_0_0_rgb(var(--shadow-ink))]' : 'border-rule hover:border-ink/40'
       }`}
     >
       <div className="flex items-center justify-between gap-3">
-        <p className="truncate text-xs font-semibold uppercase tracking-[0.14em] text-inkblue">{item.subject}</p>
+        <p className="truncate text-xs font-semibold uppercase tracking-[0.14em] text-link">{item.subject}</p>
         <StatusBadge status={item.status} />
       </div>
       <h3 className="mt-4 font-serif text-xl font-semibold leading-snug">{item.title}</h3>
@@ -139,13 +139,13 @@ export default function TodaysClasses() {
     <section
       id="classes"
       aria-labelledby="classes-title"
-      className="border-y border-rule bg-white/50 py-20 lg:py-28"
+      className="border-y border-rule bg-surface/50 py-20 lg:py-28"
     >
       <div className="edition">
         <div data-reveal className="reveal flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-2xl">
-            <p className="inline-flex items-center gap-2 rounded-full border border-rule bg-white px-3 py-1 text-xs font-semibold">
-              <CalendarDays className="h-3.5 w-3.5 text-inkblue" aria-hidden="true" />
+            <p className="inline-flex items-center gap-2 rounded-full border border-rule bg-surface px-3 py-1 text-xs font-semibold">
+              <CalendarDays className="h-3.5 w-3.5 text-link" aria-hidden="true" />
               <time dateTime={isoDate}>{dateLabel}</time>
             </p>
             <h2 id="classes-title" className="section-title mt-4">
@@ -168,7 +168,7 @@ export default function TodaysClasses() {
             </RailTrack>
           ) : (
             <div className="flex flex-col items-center rounded-2xl border-2 border-dashed border-rule px-6 py-14 text-center">
-              <span className="flex h-12 w-12 items-center justify-center rounded-full border border-rule bg-white">
+              <span className="flex h-12 w-12 items-center justify-center rounded-full border border-rule bg-surface">
                 <CalendarDays className="h-5 w-5 text-ink-muted" aria-hidden="true" />
               </span>
               <p className="mt-4 font-serif text-xl font-semibold">No classes on today&rsquo;s plan</p>
