@@ -6,6 +6,20 @@
     <title>UPSC ZONE AI · The Daily Edition for UPSC aspirants</title>
     <meta name="description" content="A daily edition for UPSC CSE aspirants: current affairs mapped to the GS syllabus, previous-year questions, smart notes and AI mock tests in one routine." />
     <meta name="theme-color" content="#FAF7F0" />
+    <meta name="color-scheme" content="light" />
+    <!-- Apply the saved theme (light by default) before first paint so there is no flash of the wrong theme. -->
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('upsc-theme');
+          var dark = saved === 'dark';
+          if (dark) {
+            document.documentElement.classList.add('dark');
+            document.querySelector('meta[name="theme-color"]').setAttribute('content', '#181715');
+          }
+        } catch (e) {}
+      })();
+    </script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="UPSC ZONE AI · The Daily Edition" />

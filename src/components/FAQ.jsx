@@ -13,17 +13,17 @@ export default function FAQ() {
         <h3 className="font-serif text-2xl font-semibold">{t('faq.title')}</h3>
         <p className="mt-2 text-sm text-ink-muted">
           Still unsure? Write to{' '}
-          <a href="mailto:info@upsczone.in" className="font-semibold text-inkblue underline underline-offset-4">
+          <a href="mailto:info@upsczone.in" className="font-semibold text-link underline underline-offset-4">
             info@upsczone.in
           </a>
           .
         </p>
       </div>
-      <div className="border-t border-ink lg:col-span-8">
+      <div className="space-y-3 lg:col-span-8">
         {faq.map((item, i) => {
           const isOpen = open === i;
           return (
-            <div key={item.q} className="border-b border-rule">
+            <div key={item.q} className="rounded-xl border border-rule bg-surface px-5 shadow-card">
               <h4>
                 <button
                   type="button"
@@ -49,7 +49,7 @@ export default function FAQ() {
                 role="region"
                 aria-labelledby={`faq-q-${i}`}
                 hidden={!isOpen}
-                className="pb-5 pr-10 text-sm leading-relaxed text-ink-muted"
+                className="pb-5 pr-9 text-sm leading-relaxed text-ink-muted"
               >
                 {item.a}
               </div>

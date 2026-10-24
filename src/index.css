@@ -2,6 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ------------------------------------------------------------------
+   Colour tokens. Space-separated RGB channels so Tailwind can apply
+   opacity (bg-ink/40). The light values are the original design; the
+   dark values are a warm near-black "edition at night". Components use
+   the token utilities (bg-paper, text-ink, bg-surface ...) and never
+   hard-code a theme colour.
+   ------------------------------------------------------------------ */
+:root {
+  color-scheme: light;
+  --paper: 250 247 240;
+  --surface: 255 255 255; /* cards and inputs that sit on the paper */
+  --ink: 28 27 25;
+  --ink-muted: 87 83 74;
+  --rule: 217 212 199;
+  --inkblue: 31 58 147; /* fills: buttons, bars, pins */
+  --inkblue-dark: 23 44 112; /* fill hover */
+  --link: 31 58 147; /* blue used as text */
+  --highlighter: 246 214 90;
+  --on-highlighter: 28 27 25;
+  --success: 46 125 79;
+  --on-success: 255 255 255;
+  --error: 179 38 30;
+  --live: 194 65 12;
+  --band: 28 27 25; /* the deliberately dark blocks: syllabus, footer */
+  --on-band: 250 247 240;
+  --scrim: 28 27 25;
+  --shadow-lift: 0 12px 24px -12px rgb(28 27 25 / 0.25);
+  --shadow-card: 0 1px 2px rgb(28 27 25 / 0.05), 0 10px 24px -16px rgb(28 27 25 / 0.22);
+  --marker-a: 1; /* strength of the highlighter-pen strokes */
+}
+:root.dark {
+  color-scheme: dark;
+  --paper: 24 23 21;
+  --surface: 35 33 30;
+  --ink: 241 236 225;
+  --ink-muted: 168 162 149;
+  --rule: 66 62 56;
+  --inkblue: 59 84 184;
+  --inkblue-dark: 77 104 207;
+  --link: 147 167 245;
+  --success: 82 180 124;
+  --on-success: 24 23 21;
+  --error: 240 122 112;
+  --band: 14 13 12;
+  --on-band: 241 236 225;
+  --scrim: 0 0 0;
+  --shadow-lift: 0 12px 24px -12px rgb(0 0 0 / 0.6);
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.35), 0 10px 24px -16px rgb(0 0 0 / 0.6);
+  --marker-a: 0.38;
+}
+
 @layer base {
   html {
     scroll-padding-top: 5rem;
@@ -20,13 +71,13 @@
     font-family: 'Noto Sans Devanagari', Inter, system-ui, sans-serif;
   }
   :focus-visible {
-    outline: 3px solid #1f3a93;
+    outline: 3px solid rgb(var(--link));
     outline-offset: 3px;
     border-radius: 4px;
   }
   ::selection {
     background: #f6d65a;
-    color: #1c1b19;
+    color: rgb(var(--rule));
   }
 }
 
@@ -77,13 +128,13 @@
     @apply inline-flex items-center gap-1.5 rounded border border-dashed border-ink-muted px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wider text-ink-muted;
   }
   .double-rule {
-    border-top: 3px double #1c1b19;
+    border-top: 3px double rgb(var(--ink));
   }
 }
 
 /* Marker highlight that sweeps in behind the hero keyword */
 .marker {
-  background-image: linear-gradient(transparent 58%, #f6d65a 58%, #f6d65a 92%, transparent 92%);
+  background-image: linear-gradient(transparent 58%, rgb(var(--highlighter) / var(--marker-a)) 58%, rgb(var(--highlighter) / var(--marker-a)) 92%, transparent 92%);
   background-repeat: no-repeat;
   background-size: 100% 100%;
   padding: 0 0.08em;
@@ -100,6 +151,28 @@
   to {
     background-size: 100% 100%;
   }
+}
+
+
+/* Theme switch: a circular reveal drawn by the View Transitions API (see
+   src/theme.js). The page itself is not animated; the new theme is clipped
+   to a growing circle above a still of the old one. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-old(root) {
+  z-index: 1;
+}
+::view-transition-new(root) {
+  z-index: 2;
+}
+/* No colour transitions while the new theme is captured, so the snapshot is final. */
+html.theme-switching *,
+html.theme-switching *::before,
+html.theme-switching *::after {
+  transition: none !important;
 }
 
 .strip-view {
@@ -129,7 +202,7 @@
 
 /* Static highlighter stroke, used for the "why it matters" lines in Compare */
 .marker-static {
-  background-image: linear-gradient(transparent 55%, rgba(246, 214, 90, 0.85) 55%, rgba(246, 214, 90, 0.85) 92%, transparent 92%);
+  background-image: linear-gradient(transparent 55%, rgb(var(--highlighter) / calc(var(--marker-a) * 0.85)) 55%, rgb(var(--highlighter) / calc(var(--marker-a) * 0.85)) 92%, transparent 92%);
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
 }
@@ -149,13 +222,13 @@
 }
 
 .cmp-clip {
-  box-shadow: 6px 0 0 0 #1c1b19;
+  box-shadow: 6px 0 0 0 rgb(var(--rule));
 }
 .cmp-clip-last {
-  box-shadow: 6px 0 0 0 #1c1b19, 6px 6px 0 0 #1c1b19;
+  box-shadow: 6px 0 0 0 rgb(var(--rule)), 6px 6px 0 0 rgb(var(--rule));
 }
 .cmp-head {
-  background: linear-gradient(#f6d65a, #f6d65a) no-repeat left / 100% 100%, #ffffff;
+  background: linear-gradient(rgb(var(--highlighter) / var(--marker-a)), rgb(var(--highlighter) / var(--marker-a))) no-repeat left / 100% 100%, rgb(var(--surface));
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -194,15 +267,15 @@
   /* Comparison: the answer column lifts onto the page row by row */
   [data-motion] [data-reveal] .cmp-clip,
   [data-motion] [data-reveal] .cmp-clip-last {
-    box-shadow: 0 0 0 0 #1c1b19;
+    box-shadow: 0 0 0 0 rgb(var(--rule));
     transition: box-shadow 500ms ease, background-color 200ms ease;
     transition-delay: calc(var(--delay, 0ms) + 150ms), 0ms;
   }
   [data-motion] [data-in] .cmp-clip {
-    box-shadow: 6px 0 0 0 #1c1b19;
+    box-shadow: 6px 0 0 0 rgb(var(--rule));
   }
   [data-motion] [data-in] .cmp-clip-last {
-    box-shadow: 6px 0 0 0 #1c1b19, 6px 6px 0 0 #1c1b19;
+    box-shadow: 6px 0 0 0 rgb(var(--rule)), 6px 6px 0 0 rgb(var(--rule));
   }
   [data-motion] [data-reveal] .cmp-head {
     background-size: 0% 100%, auto;
@@ -339,4 +412,10 @@
     opacity: 0;
     transform: scale(2.6);
   }
+}
+
+/* Text on a highlighter-yellow fill stays dark in both themes. Kept last and
+   outside a layer so it wins over a component's own text-ink. */
+.bg-highlighter {
+  color: rgb(var(--on-highlighter));
 }

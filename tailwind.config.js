@@ -1,19 +1,31 @@
 /** @type {import('tailwindcss').Config} */
+const c = (name) => `rgb(var(--${name}) / <alpha-value>)`;
+
 export default {
+  darkMode: 'class',
   content: ['./index.html', './src/**/*.{js,jsx}'],
   theme: {
     extend: {
+      // Every colour is a CSS variable (see src/index.css), so one set of
+      // utilities serves both themes.
       colors: {
-        paper: '#FAF7F0',
-        ink: '#1C1B19',
-        'ink-muted': '#57534A',
-        inkblue: '#1F3A93',
-        'inkblue-dark': '#172C70',
-        highlighter: '#F6D65A',
-        rule: '#D9D4C7',
-        success: '#2E7D4F',
-        error: '#B3261E',
-        live: '#C2410C',
+        paper: c('paper'),
+        surface: c('surface'),
+        ink: c('ink'),
+        'ink-muted': c('ink-muted'),
+        inkblue: c('inkblue'),
+        'inkblue-dark': c('inkblue-dark'),
+        link: c('link'),
+        highlighter: c('highlighter'),
+        'on-highlighter': c('on-highlighter'),
+        rule: c('rule'),
+        success: c('success'),
+        'on-success': c('on-success'),
+        error: c('error'),
+        live: c('live'),
+        band: c('band'),
+        'on-band': c('on-band'),
+        scrim: c('scrim'),
       },
       fontFamily: {
         serif: ['Fraunces', 'Georgia', 'serif'],
@@ -24,7 +36,8 @@ export default {
         edition: '1200px',
       },
       boxShadow: {
-        lift: '0 12px 24px -12px rgba(28, 27, 25, 0.25)',
+        lift: 'var(--shadow-lift)',
+        card: 'var(--shadow-card)',
       },
     },
   },

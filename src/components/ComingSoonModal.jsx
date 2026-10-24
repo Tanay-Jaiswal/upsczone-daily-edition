@@ -39,7 +39,7 @@ export default function ComingSoonModal({ feature, onClose }) {
 
   return (
     <div
-      className="fixed inset-0 z-[70] flex items-end justify-center bg-ink/50 p-4 backdrop-blur-sm sm:items-center"
+      className="fixed inset-0 z-[70] flex items-end justify-center bg-scrim/50 dark:bg-scrim/70 p-4 backdrop-blur-sm sm:items-center"
       onMouseDown={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
@@ -51,7 +51,7 @@ export default function ComingSoonModal({ feature, onClose }) {
         aria-modal="true"
         aria-labelledby="soon-title"
         aria-describedby="soon-desc"
-        className="relative w-full max-w-md rounded-2xl border border-rule bg-paper p-6 shadow-lift sm:p-8"
+        className="relative w-full max-w-md rounded-2xl border border-rule bg-surface p-6 shadow-lift sm:p-8"
       >
         <button
           ref={closeRef}
@@ -63,7 +63,7 @@ export default function ComingSoonModal({ feature, onClose }) {
           <X className="h-5 w-5" aria-hidden="true" />
         </button>
         <p className="kicker flex items-center gap-2">
-          <Sparkles className="h-4 w-4 text-inkblue" aria-hidden="true" /> Concept preview
+          <Sparkles className="h-4 w-4 text-link" aria-hidden="true" /> Concept preview
         </p>
         <h2 id="soon-title" className="mt-3 font-serif text-2xl font-semibold leading-snug">
           Coming soon in the full product

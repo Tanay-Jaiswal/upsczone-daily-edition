@@ -64,7 +64,7 @@ export default function Hero() {
           <ol style={{ '--i': 5 }} className="hero-in mt-10 flex flex-wrap items-center gap-2 text-sm text-ink-muted" aria-label="How a story connects">
             {['News', 'GS syllabus', 'PYQs', 'Practice'].map((step, i, arr) => (
               <li key={step} className="flex items-center gap-2">
-                <span className="rounded-full border border-rule bg-white/70 px-3 py-1 font-medium text-ink">{step}</span>
+                <span className="rounded-full border border-rule bg-surface/70 px-3 py-1 font-medium text-ink">{step}</span>
                 {i < arr.length - 1 && (
                   <ArrowRight className="hero-nudge h-4 w-4" style={{ '--i': i }} aria-hidden="true" />
                 )}

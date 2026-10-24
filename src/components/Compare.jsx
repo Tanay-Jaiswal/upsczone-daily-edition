@@ -8,7 +8,7 @@ import FAQ from './FAQ.jsx';
 // The UPSC ZONE AI column is drawn as one raised "clipping": ink border plus the
 // same hard offset shadow as the sample quiz card, stitched across table cells
 // (shadow lives in .cmp-clip so it can animate in).
-const CLIP_SIDES = 'border-x-2 border-ink bg-white';
+const CLIP_SIDES = 'border-x-2 border-rule bg-surface';
 // Thin reading-progress rule pinned under the navbar while the section is on screen.
 function useSectionProgress(rootRef, barRef) {
   useEffect(() => {
@@ -40,7 +40,7 @@ function useSectionProgress(rootRef, barRef) {
 function Answer({ ours, why, whyLabel }) {
   return (
     <div className="grid grid-cols-[1.25rem_1fr] gap-x-3 gap-y-2">
-      <span className="pop-in mt-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-success text-white">
+      <span className="pop-in mt-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-success text-on-success">
         <Check className="h-3 w-3" strokeWidth={3} aria-hidden="true" />
       </span>
       <p className="text-[0.95rem] font-medium leading-relaxed text-ink">{ours}</p>
@@ -111,11 +111,11 @@ export default function Compare() {
               </th>
               <th
                 scope="col"
-                className="cmp-head cmp-clip rounded-t-2xl border-x-2 border-t-2 border-ink px-7 pb-5 pt-6 align-bottom"
+                className="cmp-head cmp-clip rounded-t-2xl border-x-2 border-t-2 border-rule px-7 pb-5 pt-6 align-bottom"
               >
                 <span className="sr-only">UPSC ZONE AI</span>
                 <span aria-hidden="true" className="flex items-end justify-between gap-4">
-                  <Wordmark className="text-2xl [&>span:last-child]:bg-ink [&>span:last-child]:text-highlighter" />
+                  <Wordmark className="text-2xl [&>span:last-child]:bg-band [&>span:last-child]:text-highlighter" />
                   <span className="hidden font-serif text-sm font-normal italic text-ink lg:inline">and why it matters</span>
                 </span>
               </th>
@@ -126,7 +126,7 @@ export default function Compare() {
               <tr key={row.question} data-reveal className="group">
                 <th
                   scope="row"
-                  className="border-t border-rule py-7 pr-8 align-top font-serif text-xl font-semibold leading-snug text-ink transition-colors group-hover:text-inkblue"
+                  className="border-t border-rule py-7 pr-8 align-top font-serif text-xl font-semibold leading-snug text-ink transition-colors group-hover:text-link"
                 >
                   <span className="reveal-child block">{row.question}</span>
                 </th>
@@ -176,9 +176,9 @@ export default function Compare() {
             <div className="mt-2">
               <Usual text={row.others} />
             </div>
-            <div className="cmp-clip-last mr-[6px] mt-5 overflow-hidden rounded-xl border-2 border-ink bg-white">
+            <div className="cmp-clip-last mr-[6px] mt-5 overflow-hidden rounded-xl border-2 border-rule bg-surface">
               <div className="cmp-head px-4 py-2.5">
-                <Wordmark className="text-lg [&>span:last-child]:bg-ink [&>span:last-child]:text-highlighter" />
+                <Wordmark className="text-lg [&>span:last-child]:bg-band [&>span:last-child]:text-highlighter" />
               </div>
               <div className="p-4">
                 <Answer ours={row.ours} why={row.why} whyLabel={t('compare.why')} />

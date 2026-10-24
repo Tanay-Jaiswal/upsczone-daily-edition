@@ -17,7 +17,7 @@ const VISUALS = {
         <span
           key={o}
           className={`flex items-center gap-1.5 rounded-md border px-2 py-1 text-[10px] font-semibold transition-colors duration-300 ${
-            o === 'B' ? 'border-success bg-success/10 group-hover/card:bg-success/20' : 'border-rule bg-white text-ink-muted'
+            o === 'B' ? 'border-success bg-success/10 group-hover/card:bg-success/20' : 'border-rule bg-surface text-ink-muted'
           }`}
         >
           <span className="flex h-3.5 w-3.5 items-center justify-center rounded-full border border-current text-[8px]">{o}</span>
@@ -31,7 +31,7 @@ const VISUALS = {
       <span className={`${bar} h-1 w-full`} />
       <span className="block h-1 w-11/12 rounded bg-highlighter transition-[width] duration-500 group-hover/card:w-full" />
       <span className={`${bar} h-1 w-8/12`} />
-      <span className="absolute right-0 top-0 w-12 border-l-2 border-inkblue pl-1.5 font-serif text-[9px] italic leading-tight text-inkblue">add an example</span>
+      <span className="absolute right-0 top-0 w-12 border-l-2 border-inkblue pl-1.5 font-serif text-[9px] italic leading-tight text-link">add an example</span>
     </div>
   ),
   'current-affairs': () => (
@@ -64,7 +64,7 @@ const VISUALS = {
   interview: () => (
     <div className="space-y-1.5">
       <span className="block w-4/5 rounded-xl rounded-bl-sm bg-ink px-2.5 py-1 font-serif text-[10px] italic text-paper">Why does the monsoon matter?</span>
-      <span className="ml-auto block w-3/5 space-y-1 rounded-xl rounded-br-sm border border-rule bg-white px-2.5 py-1.5">
+      <span className="ml-auto block w-3/5 space-y-1 rounded-xl rounded-br-sm border border-rule bg-surface px-2.5 py-1.5">
         <span className={`${bar} block h-1`} />
         <span className={`${bar} block h-1 w-2/3`} />
       </span>
@@ -76,10 +76,10 @@ function PathCard({ path }) {
   const { openSoon } = useUI();
   const Visual = VISUALS[path.id];
   return (
-    <article className="group/card flex h-full flex-col rounded-2xl border border-rule bg-paper p-5 transition duration-200 hover:-translate-y-1 hover:border-ink/40 hover:shadow-lift focus-within:border-ink/40">
-      <div className="relative flex h-24 items-center rounded-xl border border-rule bg-white/80 px-4">
+    <article className="group/card flex h-full flex-col rounded-2xl border border-rule bg-surface p-5 shadow-card transition duration-200 hover:-translate-y-1 hover:border-ink/40 hover:shadow-lift focus-within:border-ink/40">
+      <div className="relative flex h-24 items-center rounded-xl border border-rule bg-paper px-4">
         <div aria-hidden="true" className="mr-auto w-full max-w-[7.25rem]">{Visual && <Visual />}</div>
-        <span className="absolute right-2 top-2 rounded-full border border-rule bg-paper px-2 py-0.5 text-[11px] font-medium text-ink-muted">{path.category}</span>
+        <span className="absolute right-2 top-2 rounded-full border border-rule bg-surface px-2 py-0.5 text-[11px] font-medium text-ink-muted">{path.category}</span>
       </div>
       <h3 className="mt-5 font-serif text-2xl font-semibold leading-tight">{path.title}</h3>
       <p className="mt-2 text-sm leading-relaxed text-ink-muted">{path.blurb}</p>
@@ -94,7 +94,7 @@ function PathCard({ path }) {
       <button
         type="button"
         onClick={() => openSoon(`Learning path: ${path.title}`)}
-        className="link-slide mt-auto inline-flex items-center gap-1.5 self-start pt-5 text-sm font-semibold text-inkblue [&>svg]:transition-transform hover:[&>svg]:translate-x-1"
+        className="link-slide mt-auto inline-flex items-center gap-1.5 self-start pt-5 text-sm font-semibold text-link [&>svg]:transition-transform hover:[&>svg]:translate-x-1"
       >
         Explore path
         <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -139,7 +139,7 @@ export default function LearningPaths() {
             </RailTrack>
           ) : (
             <div className="flex flex-col items-center rounded-2xl border-2 border-dashed border-rule px-6 py-14 text-center">
-              <span className="flex h-12 w-12 items-center justify-center rounded-full border border-rule bg-white">
+              <span className="flex h-12 w-12 items-center justify-center rounded-full border border-rule bg-surface">
                 <Compass className="h-5 w-5 text-ink-muted" aria-hidden="true" />
               </span>
               <p className="mt-4 font-serif text-xl font-semibold">Learning paths are on their way</p>
