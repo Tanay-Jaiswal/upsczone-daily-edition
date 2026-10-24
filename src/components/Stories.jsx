@@ -1,10 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
-import { ChevronLeft, ChevronRight, MapPin, Pause, Play, Video } from 'lucide-react';
+import { ChevronLeft, ChevronRight, MapPin, Video } from 'lucide-react';
+import StoryStrip from './StoryStrip.jsx';
 import { useUI } from '../context.js';
 import { stories, videoSlot } from '../data/stories.js';
 import { MAP_VIEWBOX, MAP_RATIO, OUTLINE_PATH, BORDERS_PATH, PLACES } from '../data/indiaMap.js';
-
-const AUTO_ADVANCE_MS = 6000;
 
 const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -159,90 +158,9 @@ function FeaturedStory({ index, onStep }) {
   );
 }
 
-// Horizontal strip: native scroll-snap (swipe on touch), prev/next buttons, and
-// a slow auto-advance on wide screens that pauses on hover, focus or by button.
-function useStrip(trackRef) {
-  const [edges, setEdges] = useState({ start: true, end: false });
-  const [hovered, setHovered] = useState(false);
-  const [focused, setFocused] = useState(false);
-  const [userPaused, setUserPaused] = useState(false);
-  const [canAuto, setCanAuto] = useState(false);
-  const [inView, setInView] = useState(false);
-
-  const advance = (dir) => {
-    const track = trackRef.current;
-    const card = track?.querySelector('li');
-    if (!card) return;
-    const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
-    const behavior = prefersReducedMotion() ? 'auto' : 'smooth';
-    const atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
-    if (dir > 0 && atEnd) track.scrollTo({ left: 0, behavior });
-    else track.scrollBy({ left: dir * (card.offsetWidth + gap), behavior });
-  };
-
-  useEffect(() => {
-    const track = trackRef.current;
-    if (!track) return undefined;
-    const update = () =>
-      setEdges({
-        start: track.scrollLeft <= 4,
-        end: track.scrollLeft + track.clientWidth >= track.scrollWidth - 4,
-      });
-    update();
-    track.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
-
-    const wide = window.matchMedia('(min-width: 1024px)');
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const syncAuto = () => setCanAuto(wide.matches && !reduce.matches);
-    syncAuto();
-    wide.addEventListener('change', syncAuto);
-    reduce.addEventListener('change', syncAuto);
-
-    const io = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting), { threshold: 0.5 });
-    io.observe(track);
-    return () => {
-      track.removeEventListener('scroll', update);
-      window.removeEventListener('resize', update);
-      wide.removeEventListener('change', syncAuto);
-      reduce.removeEventListener('change', syncAuto);
-      io.disconnect();
-    };
-  }, [trackRef]);
-
-  const running = canAuto && inView && !hovered && !focused && !userPaused;
-  useEffect(() => {
-    if (!running) return undefined;
-    const id = setInterval(() => advance(1), AUTO_ADVANCE_MS);
-    return () => clearInterval(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [running]);
-
-  return {
-    edges,
-    running,
-    // Using the arrows hands control to the reader, so auto-advance stops.
-    step: (dir) => {
-      setUserPaused(true);
-      advance(dir);
-    },
-    canAuto,
-    userPaused,
-    togglePause: () => setUserPaused((p) => !p),
-    regionProps: {
-      onMouseEnter: () => setHovered(true),
-      onMouseLeave: () => setHovered(false),
-      onFocus: () => setFocused(true),
-      onBlur: (e) => {
-        if (!e.currentTarget.contains(e.relatedTarget)) setFocused(false);
-      },
-    },
-  };
-}
-
 function StripCard({ story, onLocate }) {
   return (
-    <article className="flex h-full flex-col rounded-2xl border border-rule bg-paper p-6 transition duration-200 hover:border-ink">
+    <article className="flex h-full flex-col rounded-2xl border border-rule bg-paper p-6 transition duration-300 ease-out hover:-translate-y-1 hover:border-ink/50 hover:shadow-lift focus-within:border-ink/50">
       <div className="flex items-center justify-between gap-3">
         <span className="rounded-full border border-rule bg-white px-3 py-1 text-xs font-medium">{story.focus}</span>
         <span className="text-[11px] font-semibold uppercase tracking-wider text-ink-muted">Sample</span>
@@ -262,7 +180,7 @@ function StripCard({ story, onLocate }) {
         <button
           type="button"
           onClick={onLocate}
-          className="link-slide flex shrink-0 items-center gap-1 rounded-full px-2 py-1.5 text-xs font-semibold text-inkblue"
+          className="link-slide flex shrink-0 items-center gap-1 rounded-full px-2 py-1.5 text-xs font-semibold text-inkblue [&>svg]:transition-transform hover:[&>svg]:-translate-y-0.5"
         >
           <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
           On map
@@ -288,15 +206,11 @@ function VideoSlot() {
   );
 }
 
-const ITEM_WIDTH = 'w-[85%] shrink-0 snap-start sm:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-3rem)/3)]';
-
 export default function Stories() {
   const { t } = useUI();
   const [active, setActive] = useState(0);
   const featureRef = useRef(null);
   const mapRef = useRef(null);
-  const trackRef = useRef(null);
-  const strip = useStrip(trackRef);
 
   const [lead, rest] = t('stories.title').split(/(?<=[.।])\s+/);
 
@@ -356,55 +270,21 @@ export default function Stories() {
         </div>
 
         {/* Stage 5: the strip */}
-        <div data-reveal className="reveal mt-16 lg:mt-20" role="region" aria-label="More sample stories" data-auto={strip.running ? 'on' : 'off'} {...strip.regionProps}>
-          <div className="flex items-end justify-between gap-4">
-            <h3 className="font-serif text-2xl font-semibold">More from the map</h3>
-            <div className="flex items-center gap-2">
-              {strip.canAuto && (
-                <button
-                  type="button"
-                  onClick={strip.togglePause}
-                  aria-label={strip.userPaused ? 'Resume auto-scroll' : 'Pause auto-scroll'}
-                  className="flex h-10 w-10 items-center justify-center rounded-full text-ink-muted transition hover:text-ink"
-                >
-                  {strip.userPaused ? <Play className="h-4 w-4" aria-hidden="true" /> : <Pause className="h-4 w-4" aria-hidden="true" />}
-                </button>
-              )}
-              <button
-                type="button"
-                onClick={() => strip.step(-1)}
-                disabled={strip.edges.start}
-                aria-label="Previous stories"
-                className="hidden h-10 w-10 items-center justify-center rounded-full border border-ink transition hover:bg-ink hover:text-paper disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-ink sm:flex"
-              >
-                <ChevronLeft className="h-4 w-4" aria-hidden="true" />
-              </button>
-              <button
-                type="button"
-                onClick={() => strip.step(1)}
-                aria-label={strip.edges.end ? 'Back to the first story' : 'Next stories'}
-                className="hidden h-10 w-10 items-center justify-center rounded-full border border-ink transition hover:bg-ink hover:text-paper sm:flex"
-              >
-                <ChevronRight className="h-4 w-4" aria-hidden="true" />
-              </button>
-            </div>
-          </div>
-          <ul
-            ref={trackRef}
-            className="no-scrollbar relative -mx-4 mt-6 flex snap-x snap-mandatory scroll-px-4 gap-4 overflow-x-auto px-4 pb-3 pt-1 sm:mx-0 sm:scroll-px-0 sm:gap-6 sm:px-0"
+        <div data-reveal className="reveal mt-16 lg:mt-20">
+          <StoryStrip
+            label="More sample stories"
+            pauseLabel="Pause the moving stories"
+            resumeLabel="Play the moving stories"
+            prevLabel="Previous stories"
+            nextLabel="Next stories"
+            hint="Drag or swipe, or use the arrows."
+            heading={<h3 className="font-serif text-2xl font-semibold">More from the map</h3>}
           >
             {stories.map((story, i) => (
-              <li key={story.id} className={ITEM_WIDTH}>
-                <StripCard story={story} onLocate={() => locate(i)} />
-              </li>
+              <StripCard key={story.id} story={story} onLocate={() => locate(i)} />
             ))}
-            {videoSlot.enabled && !videoSlot.src && (
-              <li className={ITEM_WIDTH}>
-                <VideoSlot />
-              </li>
-            )}
-          </ul>
-          <p className="mt-2 text-xs text-ink-muted sm:hidden">Swipe for more stories.</p>
+            {videoSlot.enabled && !videoSlot.src && <VideoSlot key="video-slot" />}
+          </StoryStrip>
         </div>
       </div>
     </section>
