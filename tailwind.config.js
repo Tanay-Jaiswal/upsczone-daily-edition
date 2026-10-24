@@ -35,6 +35,16 @@ export default {
       maxWidth: {
         edition: '1200px',
       },
+      // Editorial corners: tight radii everywhere, so panels read as printed
+      // boxes rather than app cards. Pills (full) are unchanged.
+      borderRadius: {
+        DEFAULT: '2px',
+        md: '3px',
+        lg: '4px',
+        xl: '4px',
+        '2xl': '6px',
+        '3xl': '8px',
+      },
       boxShadow: {
         lift: 'var(--shadow-lift)',
         card: 'var(--shadow-card)',
