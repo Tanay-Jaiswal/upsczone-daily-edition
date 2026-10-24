@@ -206,8 +206,8 @@ export default function Journey() {
               </span>
               <div
                 data-reveal
-                className={`reveal w-full lg:rounded-2xl lg:border lg:bg-surface/70 lg:p-10 lg:transition-[border-color,box-shadow] lg:duration-500 ${
-                  i === active ? 'lg:border-ink lg:shadow-[6px_6px_0_0_rgb(var(--shadow-ink))]' : 'lg:border-rule'
+                className={`reveal w-full lg:rounded-2xl lg:border lg:bg-surface lg:p-10 lg:transition-[border-color,box-shadow] lg:duration-500 ${
+                  i === active ? 'lg:border-inkblue/50 lg:shadow-card' : 'lg:border-rule'
                 }`}
               >
                 <span className="hidden h-12 w-12 items-center justify-center rounded-full border-2 border-ink bg-paper lg:flex">

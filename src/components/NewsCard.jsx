@@ -6,7 +6,7 @@ export default function NewsCard({ item, index, className = '', style }) {
   return (
     <article
       style={style}
-      className={`card-lift group relative flex w-[82%] shrink-0 snap-start flex-col rounded-xl border border-rule bg-surface/70 p-5 sm:w-[60%] lg:w-auto ${className}`}
+      className={`card-lift group relative flex w-[82%] shrink-0 snap-start flex-col rounded-xl border border-rule bg-surface shadow-card p-5 sm:w-[60%] lg:w-auto ${className}`}
     >
       <div className="flex items-center justify-between gap-3">
         <span className="chip">

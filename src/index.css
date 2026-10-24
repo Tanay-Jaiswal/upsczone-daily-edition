@@ -28,8 +28,8 @@
   --band: 28 27 25; /* the deliberately dark blocks: syllabus, footer */
   --on-band: 250 247 240;
   --scrim: 28 27 25;
-  --shadow-ink: 28 27 25; /* hard offset "clipping" shadows */
   --shadow-lift: 0 12px 24px -12px rgb(28 27 25 / 0.25);
+  --shadow-card: 0 1px 2px rgb(28 27 25 / 0.05), 0 10px 24px -16px rgb(28 27 25 / 0.22);
   --marker-a: 1; /* strength of the highlighter-pen strokes */
 }
 :root.dark {
@@ -48,8 +48,8 @@
   --band: 14 13 12;
   --on-band: 241 236 225;
   --scrim: 0 0 0;
-  --shadow-ink: 88 84 76;
   --shadow-lift: 0 12px 24px -12px rgb(0 0 0 / 0.6);
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.35), 0 10px 24px -16px rgb(0 0 0 / 0.6);
   --marker-a: 0.38;
 }
 
@@ -77,7 +77,7 @@
   }
   ::selection {
     background: #f6d65a;
-    color: rgb(var(--shadow-ink));
+    color: rgb(var(--rule));
   }
 }
 
@@ -222,10 +222,10 @@ html.theme-switching *::after {
 }
 
 .cmp-clip {
-  box-shadow: 6px 0 0 0 rgb(var(--shadow-ink));
+  box-shadow: 6px 0 0 0 rgb(var(--rule));
 }
 .cmp-clip-last {
-  box-shadow: 6px 0 0 0 rgb(var(--shadow-ink)), 6px 6px 0 0 rgb(var(--shadow-ink));
+  box-shadow: 6px 0 0 0 rgb(var(--rule)), 6px 6px 0 0 rgb(var(--rule));
 }
 .cmp-head {
   background: linear-gradient(rgb(var(--highlighter) / var(--marker-a)), rgb(var(--highlighter) / var(--marker-a))) no-repeat left / 100% 100%, rgb(var(--surface));
@@ -267,15 +267,15 @@ html.theme-switching *::after {
   /* Comparison: the answer column lifts onto the page row by row */
   [data-motion] [data-reveal] .cmp-clip,
   [data-motion] [data-reveal] .cmp-clip-last {
-    box-shadow: 0 0 0 0 rgb(var(--shadow-ink));
+    box-shadow: 0 0 0 0 rgb(var(--rule));
     transition: box-shadow 500ms ease, background-color 200ms ease;
     transition-delay: calc(var(--delay, 0ms) + 150ms), 0ms;
   }
   [data-motion] [data-in] .cmp-clip {
-    box-shadow: 6px 0 0 0 rgb(var(--shadow-ink));
+    box-shadow: 6px 0 0 0 rgb(var(--rule));
   }
   [data-motion] [data-in] .cmp-clip-last {
-    box-shadow: 6px 0 0 0 rgb(var(--shadow-ink)), 6px 6px 0 0 rgb(var(--shadow-ink));
+    box-shadow: 6px 0 0 0 rgb(var(--rule)), 6px 6px 0 0 rgb(var(--rule));
   }
   [data-motion] [data-reveal] .cmp-head {
     background-size: 0% 100%, auto;

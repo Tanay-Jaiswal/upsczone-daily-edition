@@ -63,7 +63,7 @@ function ClassCard({ item }) {
   return (
     <article
       className={`flex h-full flex-col rounded-2xl border bg-surface p-5 transition duration-200 hover:-translate-y-1 hover:shadow-lift sm:p-6 ${
-        live ? 'border-ink shadow-[4px_4px_0_0_rgb(var(--shadow-ink))] hover:shadow-[4px_4px_0_0_rgb(var(--shadow-ink))]' : 'border-rule hover:border-ink/40'
+        live ? 'border-inkblue shadow-card' : 'border-rule shadow-card hover:border-ink/40'
       }`}
     >
       <div className="flex items-center justify-between gap-3">

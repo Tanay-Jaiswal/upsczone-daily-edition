@@ -37,6 +37,7 @@ export default {
       },
       boxShadow: {
         lift: 'var(--shadow-lift)',
+        card: 'var(--shadow-card)',
       },
     },
   },

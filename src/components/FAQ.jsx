@@ -19,11 +19,11 @@ export default function FAQ() {
           .
         </p>
       </div>
-      <div className="border-t border-ink lg:col-span-8">
+      <div className="space-y-3 lg:col-span-8">
         {faq.map((item, i) => {
           const isOpen = open === i;
           return (
-            <div key={item.q} className="border-b border-rule">
+            <div key={item.q} className="rounded-xl border border-rule bg-surface px-5 shadow-card">
               <h4>
                 <button
                   type="button"
@@ -49,7 +49,7 @@ export default function FAQ() {
                 role="region"
                 aria-labelledby={`faq-q-${i}`}
                 hidden={!isOpen}
-                className="pb-5 pr-10 text-sm leading-relaxed text-ink-muted"
+                className="pb-5 pr-9 text-sm leading-relaxed text-ink-muted"
               >
                 {item.a}
               </div>

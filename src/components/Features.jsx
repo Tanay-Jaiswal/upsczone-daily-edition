@@ -148,7 +148,7 @@ export default function Features() {
         <ul className="mt-5 grid gap-4 md:grid-cols-3">
           {MORE.map(({ icon: Icon, title, body }) => (
             <li key={title} className="reveal-child">
-              <div className="card-lift flex h-full gap-4 rounded-xl border border-rule bg-surface/60 p-5">
+              <div className="card-lift flex h-full gap-4 rounded-xl border border-rule bg-surface p-5 shadow-card">
               <Icon className="mt-0.5 h-6 w-6 shrink-0 text-link" aria-hidden="true" />
               <div>
                 <p className="font-semibold">{title}</p>

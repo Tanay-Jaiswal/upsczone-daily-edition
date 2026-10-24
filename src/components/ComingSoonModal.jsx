@@ -51,7 +51,7 @@ export default function ComingSoonModal({ feature, onClose }) {
         aria-modal="true"
         aria-labelledby="soon-title"
         aria-describedby="soon-desc"
-        className="relative w-full max-w-md rounded-2xl border border-rule bg-paper p-6 shadow-lift sm:p-8"
+        className="relative w-full max-w-md rounded-2xl border border-rule bg-surface p-6 shadow-lift sm:p-8"
       >
         <button
           ref={closeRef}

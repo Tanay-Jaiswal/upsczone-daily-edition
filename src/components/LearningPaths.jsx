@@ -76,10 +76,10 @@ function PathCard({ path }) {
   const { openSoon } = useUI();
   const Visual = VISUALS[path.id];
   return (
-    <article className="group/card flex h-full flex-col rounded-2xl border border-rule bg-paper p-5 transition duration-200 hover:-translate-y-1 hover:border-ink/40 hover:shadow-lift focus-within:border-ink/40">
-      <div className="relative flex h-24 items-center rounded-xl border border-rule bg-surface/80 px-4">
+    <article className="group/card flex h-full flex-col rounded-2xl border border-rule bg-surface p-5 shadow-card transition duration-200 hover:-translate-y-1 hover:border-ink/40 hover:shadow-lift focus-within:border-ink/40">
+      <div className="relative flex h-24 items-center rounded-xl border border-rule bg-paper px-4">
         <div aria-hidden="true" className="mr-auto w-full max-w-[7.25rem]">{Visual && <Visual />}</div>
-        <span className="absolute right-2 top-2 rounded-full border border-rule bg-paper px-2 py-0.5 text-[11px] font-medium text-ink-muted">{path.category}</span>
+        <span className="absolute right-2 top-2 rounded-full border border-rule bg-surface px-2 py-0.5 text-[11px] font-medium text-ink-muted">{path.category}</span>
       </div>
       <h3 className="mt-5 font-serif text-2xl font-semibold leading-tight">{path.title}</h3>
       <p className="mt-2 text-sm leading-relaxed text-ink-muted">{path.blurb}</p>

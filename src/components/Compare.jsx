@@ -8,7 +8,7 @@ import FAQ from './FAQ.jsx';
 // The UPSC ZONE AI column is drawn as one raised "clipping": ink border plus the
 // same hard offset shadow as the sample quiz card, stitched across table cells
 // (shadow lives in .cmp-clip so it can animate in).
-const CLIP_SIDES = 'border-x-2 border-ink bg-surface';
+const CLIP_SIDES = 'border-x-2 border-rule bg-surface';
 // Thin reading-progress rule pinned under the navbar while the section is on screen.
 function useSectionProgress(rootRef, barRef) {
   useEffect(() => {
@@ -111,7 +111,7 @@ export default function Compare() {
               </th>
               <th
                 scope="col"
-                className="cmp-head cmp-clip rounded-t-2xl border-x-2 border-t-2 border-ink px-7 pb-5 pt-6 align-bottom"
+                className="cmp-head cmp-clip rounded-t-2xl border-x-2 border-t-2 border-rule px-7 pb-5 pt-6 align-bottom"
               >
                 <span className="sr-only">UPSC ZONE AI</span>
                 <span aria-hidden="true" className="flex items-end justify-between gap-4">
@@ -176,7 +176,7 @@ export default function Compare() {
             <div className="mt-2">
               <Usual text={row.others} />
             </div>
-            <div className="cmp-clip-last mr-[6px] mt-5 overflow-hidden rounded-xl border-2 border-ink bg-surface">
+            <div className="cmp-clip-last mr-[6px] mt-5 overflow-hidden rounded-xl border-2 border-rule bg-surface">
               <div className="cmp-head px-4 py-2.5">
                 <Wordmark className="text-lg [&>span:last-child]:bg-band [&>span:last-child]:text-highlighter" />
               </div>

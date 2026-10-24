@@ -51,7 +51,7 @@ export default function SampleQuiz() {
         </div>
 
         <div data-reveal className="reveal lg:col-span-8">
-          <div className="rounded-2xl border border-ink bg-paper p-5 shadow-[6px_6px_0_0_rgb(var(--shadow-ink))] sm:p-8">
+          <div className="rounded-2xl border border-rule bg-surface p-5 shadow-card sm:p-8">
             {!finished ? (
               <>
                 <div className="flex items-center justify-between gap-4">
@@ -71,11 +71,11 @@ export default function SampleQuiz() {
                     {q.options.map((opt, i) => {
                       const isAnswer = i === q.answer;
                       const isPicked = i === picked;
-                      let style = 'border-rule bg-surface hover:border-ink';
+                      let style = 'border-rule bg-paper hover:border-ink';
                       if (picked !== null) {
                         if (isAnswer) style = 'border-success bg-success/10';
                         else if (isPicked) style = 'border-error bg-error/10';
-                        else style = 'border-rule bg-surface opacity-60';
+                        else style = 'border-rule bg-paper opacity-60';
                       }
                       return (
                         <button

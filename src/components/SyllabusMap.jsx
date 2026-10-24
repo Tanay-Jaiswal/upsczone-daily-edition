@@ -5,7 +5,7 @@ import { papers } from '../data/syllabus.js';
 
 function Node({ icon: Icon, label, children, last }) {
   return (
-    <li className="relative flex flex-1 flex-col rounded-xl border border-rule bg-surface p-4">
+    <li className="relative flex flex-1 flex-col rounded-xl border border-rule bg-paper p-4">
       <p className="kicker flex items-center gap-2">
         <Icon className="h-4 w-4 text-link" aria-hidden="true" />
         {label}
@@ -14,7 +14,7 @@ function Node({ icon: Icon, label, children, last }) {
       {!last && (
         <span
           aria-hidden="true"
-          className="absolute -bottom-4 left-1/2 z-10 flex h-7 w-7 -translate-x-1/2 items-center justify-center rounded-full border border-rule bg-paper lg:-right-4 lg:bottom-auto lg:left-auto lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-0"
+          className="absolute -bottom-4 left-1/2 z-10 flex h-7 w-7 -translate-x-1/2 items-center justify-center rounded-full border border-rule bg-surface lg:-right-4 lg:bottom-auto lg:left-auto lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-0"
         >
           <ChevronRight className="h-4 w-4 rotate-90 text-ink-muted lg:rotate-0" />
         </span>
@@ -54,22 +54,22 @@ export default function SyllabusMap() {
   };
 
   return (
-    <section id="syllabus" aria-labelledby="syllabus-title" className="bg-band py-20 text-on-band lg:py-28">
+    <section id="syllabus" aria-labelledby="syllabus-title" className="border-y border-rule bg-surface/50 py-20 lg:py-28">
       <div className="edition">
         <div data-reveal className="reveal flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-2xl">
-            <p className="kicker !text-highlighter">{t('syllabus.kicker')}</p>
-            <h2 id="syllabus-title" className="section-title mt-3 !text-on-band">
+            <p className="kicker">{t('syllabus.kicker')}</p>
+            <h2 id="syllabus-title" className="section-title mt-3">
               {t('syllabus.title')}
             </h2>
-            <p className="mt-4 text-lg leading-relaxed text-on-band/75">{t('syllabus.sub')}</p>
+            <p className="mt-4 text-lg leading-relaxed text-ink-muted">{t('syllabus.sub')}</p>
           </div>
-          <span className="inline-flex items-center gap-1.5 self-start rounded border border-dashed border-on-band/50 px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wider text-on-band/80 lg:self-auto">
+          <span className="label-sample self-start lg:self-auto">
             Illustrative data
           </span>
         </div>
 
-        <div data-reveal className="reveal mt-10 rounded-2xl bg-paper p-4 text-ink sm:p-6 lg:p-8">
+        <div data-reveal className="reveal mt-10 rounded-2xl border border-rule bg-surface p-4 text-ink shadow-card sm:p-6 lg:p-8">
           <div
             role="tablist"
             aria-label="Syllabus papers"
@@ -120,7 +120,7 @@ export default function SyllabusMap() {
                     aria-pressed={on}
                     onClick={() => setTopicId(tp.id)}
                     className={`rounded-full border px-4 py-2 text-sm font-medium transition ${
-                      on ? 'border-ink bg-highlighter text-ink' : 'border-rule bg-surface hover:border-ink'
+                      on ? 'border-ink bg-highlighter text-ink' : 'border-rule bg-paper hover:border-ink'
                     }`}
                   >
                     {tp.name}

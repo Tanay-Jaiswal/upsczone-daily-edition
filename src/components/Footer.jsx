@@ -18,15 +18,15 @@ const SOCIAL = [
 export default function Footer() {
   const { openSoon } = useUI();
   const year = new Date().getFullYear();
-  const linkClass = 'link-slide text-sm text-on-band/70 hover:text-on-band';
+  const linkClass = 'link-slide text-sm text-ink-muted hover:text-ink';
 
   return (
-    <footer className="bg-band text-on-band">
+    <footer className="border-t-[3px] border-double border-ink bg-surface/50">
       <div className="edition py-14">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <Wordmark className="text-2xl text-on-band [&>span:last-child]:text-on-highlighter" />
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-on-band/70">
+            <Wordmark className="text-2xl" />
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-ink-muted">
               The daily edition for UPSC Civil Services aspirants. News, syllabus, PYQs and practice, connected.
             </p>
             <ul className="mt-6 flex gap-2" aria-label="Social channels (placeholders)">
@@ -36,7 +36,7 @@ export default function Footer() {
                     type="button"
                     onClick={() => openSoon(label)}
                     aria-label={label}
-                    className="flex h-10 w-10 items-center justify-center rounded-full border border-on-band/20 text-on-band/80 transition hover:border-on-band hover:text-on-band"
+                    className="flex h-10 w-10 items-center justify-center rounded-full border border-rule text-ink-muted transition hover:border-ink hover:text-ink"
                   >
                     <Icon className="h-4 w-4" aria-hidden="true" />
                   </button>
@@ -47,7 +47,7 @@ export default function Footer() {
 
           {COLUMNS.map((col) => (
             <nav key={col.title} aria-label={col.title} className="lg:col-span-2">
-              <h2 className="text-xs font-semibold uppercase tracking-[0.18em] text-highlighter">{col.title}</h2>
+              <h2 className="text-xs font-semibold uppercase tracking-[0.18em] text-ink">{col.title}</h2>
               <ul className="mt-4 space-y-2.5">
                 {col.links.map((l) => (
                   <li key={l}>
@@ -61,19 +61,19 @@ export default function Footer() {
           ))}
 
           <div className="lg:col-span-2">
-            <h2 className="text-xs font-semibold uppercase tracking-[0.18em] text-highlighter">Contact</h2>
+            <h2 className="text-xs font-semibold uppercase tracking-[0.18em] text-ink">Contact</h2>
             <a href="mailto:info@upsczone.in" className={`mt-4 inline-flex items-center gap-2 ${linkClass}`}>
               <Mail className="h-4 w-4" aria-hidden="true" /> info@upsczone.in
             </a>
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-4 border-t border-on-band/15 pt-6 text-xs text-on-band/60 md:flex-row md:items-center md:justify-between">
+        <div className="mt-12 flex flex-col gap-4 border-t border-rule pt-6 text-xs text-ink-muted md:flex-row md:items-center md:justify-between">
           <p>© {year} UPSC ZONE AI · Concept design by Tanay Jaiswal</p>
           <ul className="flex flex-wrap gap-x-5 gap-y-2">
             {['Privacy policy', 'Terms of use', 'Refund policy'].map((l) => (
               <li key={l}>
-                <button type="button" onClick={() => openSoon(l)} className="link-slide hover:text-on-band">
+                <button type="button" onClick={() => openSoon(l)} className="link-slide hover:text-ink">
                   {l}
                 </button>
               </li>

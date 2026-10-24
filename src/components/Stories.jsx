@@ -40,7 +40,7 @@ function MapMarker({ story, index, active, onSelect }) {
       </span>
       <span
         aria-hidden="true"
-        className={`pointer-events-none absolute bottom-full mb-1 w-max max-w-[11rem] rounded-lg border border-ink bg-surface px-3 py-2 text-left opacity-0 shadow-[3px_3px_0_0_rgb(var(--shadow-ink))] transition-opacity duration-150 group-focus-visible:opacity-100 [@media(hover:hover)]:group-hover:opacity-100 ${popoverSide(x)}`}
+        className={`pointer-events-none absolute bottom-full mb-1 w-max max-w-[11rem] rounded-lg border border-rule bg-surface px-3 py-2 text-left opacity-0 shadow-lift transition-opacity duration-150 group-focus-visible:opacity-100 [@media(hover:hover)]:group-hover:opacity-100 ${popoverSide(x)}`}
       >
         <span className="block text-xs font-semibold leading-snug text-ink">{story.persona}</span>
         <span className="mt-0.5 flex items-center gap-1 text-[11px] text-ink-muted">
@@ -100,7 +100,7 @@ function IndiaMap({ active, onSelect }) {
 function FeaturedStory({ index, onStep }) {
   const story = stories[index];
   return (
-    <div className="rounded-2xl border border-ink bg-paper p-6 shadow-[6px_6px_0_0_rgb(var(--shadow-ink))] sm:p-8">
+    <div className="rounded-2xl border border-rule bg-surface p-6 shadow-card sm:p-8">
       <div className="flex items-center justify-between gap-3">
         <p className="kicker">
           Story {String(index + 1).padStart(2, '0')} / {String(stories.length).padStart(2, '0')}
@@ -158,7 +158,7 @@ function FeaturedStory({ index, onStep }) {
 
 function StripCard({ story, onLocate }) {
   return (
-    <article className="flex h-full flex-col rounded-2xl border border-rule bg-paper p-6 transition duration-300 ease-out hover:-translate-y-1 hover:border-ink/50 hover:shadow-lift focus-within:border-ink/50">
+    <article className="flex h-full flex-col rounded-2xl border border-rule bg-surface p-6 shadow-card transition duration-300 ease-out hover:-translate-y-1 hover:border-ink/50 hover:shadow-lift focus-within:border-ink/50">
       <div className="flex items-center justify-between gap-3">
         <span className="rounded-full border border-rule bg-surface px-3 py-1 text-xs font-medium">{story.focus}</span>
         <span className="text-[11px] font-semibold uppercase tracking-wider text-ink-muted">Sample</span>
@@ -254,7 +254,7 @@ export default function Stories() {
         <div data-reveal className="stories-stage mt-12 grid items-center gap-10 lg:mt-16 lg:grid-cols-12 lg:gap-12">
           <div
             ref={mapRef}
-            className="relative rounded-3xl border border-rule bg-paper px-4 pb-5 pt-8 sm:px-10 lg:col-span-7"
+            className="relative rounded-3xl border border-rule bg-surface px-4 pb-5 pt-8 sm:px-10 lg:col-span-7"
             style={{
               backgroundImage: 'radial-gradient(rgb(var(--ink) / 0.09) 1px, transparent 1px)',
               backgroundSize: '18px 18px',
